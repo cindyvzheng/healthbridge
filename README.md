@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HealthBridge
 
-## Getting Started
+A free resource hub helping low-income students explore healthcare careers — medicine, public health, health policy, nursing, and health economics. No cost, no login required.
 
-First, run the development server:
+---
+
+## Local Setup
 
 ```bash
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Other commands:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build   # Production build
+npm run start   # Run the production build locally
+npm run lint    # Lint the codebase
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Folder Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+healthbridge/
+├── public/                  # Static assets (SVGs, images)
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx       # Root layout — Nav, Footer, global metadata
+│   │   ├── page.tsx         # Home page
+│   │   ├── globals.css      # Global styles, CSS variables (colors, fonts)
+│   │   ├── about/
+│   │   │   └── page.tsx     # About page
+│   │   ├── contact/
+│   │   │   └── page.tsx     # Contact page
+│   │   ├── join/
+│   │   │   └── page.tsx     # Volunteer / join page
+│   │   ├── pathways/
+│   │   │   └── page.tsx     # Career pathways page
+│   │   └── resources/
+│   │       └── page.tsx     # Resources library page
+│   └── components/
+│       ├── Nav.tsx           # Top navigation bar
+│       └── Footer.tsx        # Site footer
+├── next.config.ts            # Next.js configuration
+├── tsconfig.json             # TypeScript configuration
+└── package.json
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Where to Find and Edit Content
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Text content
+All page text is written directly in the page components. Find the relevant page file and edit the string values inline.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Content | File |
+|---|---|
+| Hero headline, subheading, CTAs | `src/app/page.tsx` |
+| Career pathway names and descriptions | `src/app/page.tsx` — `paths` array (~line 122) |
+| Resource list items | `src/app/page.tsx` — resources array (~line 774) |
+| Open volunteer roles | `src/app/page.tsx` — roles array (~line 980) |
+| About / founder story | `src/app/about/page.tsx` |
+| Contact details | `src/app/contact/page.tsx` |
+| Join / application info | `src/app/join/page.tsx` |
+| Nav links | `src/components/Nav.tsx` |
+| Footer links and text | `src/components/Footer.tsx` |
+| Page title and SEO description | `src/app/layout.tsx` — `metadata` object |
+
+### Colors and design tokens
+All colors are defined as CSS variables in `src/app/globals.css`. Change a variable there and it updates everywhere:
+
+```css
+--ink: #1a1a1a;
+--cream: #f5f0e8;
+--forest: #2e5e2e;
+--terra: #b5462a;
+/* etc. */
+```
+
+### Images
+Static images live in `public/`. Reference them in components as `/filename.svg` (no `public/` prefix needed).
+
+### Third-party embeds
+There are two embeds with placeholder IDs that need to be replaced before going live:
+
+- **Typeform quiz** (`src/app/page.tsx` ~line 596): Replace `YOUR_TYPEFORM_ID` with your actual Typeform form ID.
+- **Beehiiv newsletter** (`src/app/page.tsx` ~line 883): Replace `YOUR_PUBLICATION_ID` with your Beehiiv publication ID.
+
+---
+
+## Dependencies
+
+### Runtime
+| Package | Purpose |
+|---|---|
+| `next` 16 | React framework (App Router) |
+| `react` / `react-dom` 19 | UI library |
+| `framer-motion` | Page animations and scroll effects |
+| `lenis` | Smooth scroll |
+| `@fontsource/syne` | Syne font (headings, UI labels) |
+| `@fontsource/dm-serif-display` | DM Serif Display font (italic accents) |
+| `@fontsource/plus-jakarta-sans` | Plus Jakarta Sans font (body text) |
+| `@fontsource/fraunces` | Fraunces font (alternate serif) |
+
+### Dev
+| Package | Purpose |
+|---|---|
+| `tailwindcss` v4 | Utility CSS (used minimally; most styles are inline) |
+| `typescript` | Type checking |
+| `eslint` | Linting |
