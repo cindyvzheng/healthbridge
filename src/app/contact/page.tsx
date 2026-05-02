@@ -10,7 +10,7 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   setLoading(true);
-  const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+  const res = await fetch("https://formspree.io/f/xykokkgq", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(form),
