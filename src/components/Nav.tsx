@@ -25,8 +25,6 @@ export default function Nav() {
 
   useEffect(() => setOpen(false), [pathname]);
 
-  const isHome = pathname === "/";
-
   return (
     <header style={{
       position: "fixed",
@@ -45,14 +43,8 @@ export default function Nav() {
           {/* Logo */}
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 10 }}>
             <div style={{
-              width: 32,
-              height: 32,
-              background: "var(--forest)",
-              borderRadius: 6,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexShrink: 0,
+              width: 32, height: 32, background: "var(--forest)", borderRadius: 6,
+              display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
             }}>
               <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
                 <path d="M10 3C10 3 5 6 5 10.5C5 13.538 7.238 16 10 16C12.762 16 15 13.538 15 10.5C15 6 10 3 10 3Z" fill="white" opacity="0.9"/>
@@ -60,11 +52,8 @@ export default function Nav() {
               </svg>
             </div>
             <span style={{
-              fontFamily: "Syne, system-ui, sans-serif",
-              fontWeight: 800,
-              fontSize: 18,
-              color: "var(--ink)",
-              letterSpacing: "-0.03em",
+              fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: 18,
+              color: "var(--ink)", letterSpacing: "-0.03em",
             }}>
               HealthBridge
             </span>
@@ -73,51 +62,31 @@ export default function Nav() {
           {/* Desktop nav */}
           <nav style={{ display: "flex", alignItems: "center", gap: 2 }} className="nav-desktop">
             {links.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                style={{
-                  textDecoration: "none",
-                  padding: "8px 14px",
-                  fontFamily: "Syne, system-ui, sans-serif",
-                  fontWeight: 600,
-                  fontSize: 13,
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
-                  color: pathname === href ? "var(--ink)" : "var(--text-muted)",
-                  background: pathname === href ? "rgba(0,0,0,0.06)" : "transparent",
-                  borderRadius: 4,
-                  transition: "color 0.15s, background 0.15s",
-                }}
+              <Link key={href} href={href} style={{
+                textDecoration: "none", padding: "8px 14px",
+                fontFamily: "Playfair Display, serif", fontWeight: 600, fontSize: 13,
+                letterSpacing: "0.06em", textTransform: "uppercase",
+                color: pathname === href ? "var(--ink)" : "var(--text-muted)",
+                background: pathname === href ? "rgba(0,0,0,0.06)" : "transparent",
+                borderRadius: 4, transition: "color 0.15s, background 0.15s",
+              }}
                 onMouseEnter={(e) => { if (pathname !== href) (e.currentTarget as HTMLElement).style.color = "var(--ink)"; }}
                 onMouseLeave={(e) => { if (pathname !== href) (e.currentTarget as HTMLElement).style.color = "var(--text-muted)"; }}
               >
                 {label}
               </Link>
             ))}
-            <Link href="/#newsletter" style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 7,
-              marginLeft: 12,
-              background: "var(--terra)",
-              color: "white",
-              padding: "9px 16px",
-              borderRadius: 4,
-              fontFamily: "Syne, system-ui, sans-serif",
-              fontWeight: 700,
-              fontSize: 12,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              textDecoration: "none",
-              transition: "opacity 0.2s",
+            <a href="https://healthbridge.beehiiv.com/" target="_blank" rel="noopener noreferrer" style={{
+              display: "inline-flex", alignItems: "center", gap: 7, marginLeft: 12,
+              background: "var(--terra)", color: "white", padding: "9px 16px", borderRadius: 4,
+              fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: 12,
+              letterSpacing: "0.08em", textTransform: "uppercase", textDecoration: "none", transition: "opacity 0.2s",
             }}
               onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = "0.85"; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
             >
               Subscribe
-            </Link>
-            
+            </a>
           </nav>
 
           {/* Mobile hamburger */}
@@ -138,65 +107,26 @@ export default function Nav() {
 
       {/* Mobile drawer */}
       {open && (
-        <div style={{
-          background: "var(--cream)",
-          borderTop: "1px solid var(--border)",
-          padding: "16px 24px 24px",
-        }}>
+        <div style={{ background: "var(--cream)", borderTop: "1px solid var(--border)", padding: "16px 24px 24px" }}>
           {links.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              style={{
-                display: "block",
-                padding: "14px 0",
-                textDecoration: "none",
-                fontFamily: "Syne, sans-serif",
-                fontWeight: 700,
-                fontSize: 16,
-                letterSpacing: "0.04em",
-                textTransform: "uppercase",
-                color: pathname === href ? "var(--forest)" : "var(--ink)",
-                borderBottom: "1px solid var(--border)",
-              }}
-            >
+            <Link key={href} href={href} style={{
+              display: "block", padding: "14px 0", textDecoration: "none",
+              fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: 16,
+              letterSpacing: "0.04em", textTransform: "uppercase",
+              color: pathname === href ? "var(--forest)" : "var(--ink)",
+              borderBottom: "1px solid var(--border)",
+            }}>
               {label}
             </Link>
           ))}
-          <Link href="/#newsletter" style={{
-            display: "block",
-            marginTop: 16,
-            background: "var(--terra)",
-            color: "white",
-            padding: "14px 24px",
-            borderRadius: 4,
-            fontFamily: "Syne, sans-serif",
-            fontWeight: 700,
-            fontSize: 14,
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            textDecoration: "none",
-            textAlign: "center",
+          <a href="https://healthbridge.beehiiv.com/" target="_blank" rel="noopener noreferrer" style={{
+            display: "block", marginTop: 16, background: "var(--terra)", color: "white",
+            padding: "14px 24px", borderRadius: 4, fontFamily: "Playfair Display, serif",
+            fontWeight: 700, fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase",
+            textDecoration: "none", textAlign: "center",
           }}>
             Subscribe — Free Newsletter
-          </Link>
-          <Link href="/join" style={{
-            display: "block",
-            marginTop: 10,
-            background: "var(--ink)",
-            color: "var(--cream)",
-            padding: "14px 24px",
-            borderRadius: 4,
-            fontFamily: "Syne, sans-serif",
-            fontWeight: 700,
-            fontSize: 14,
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            textDecoration: "none",
-            textAlign: "center",
-          }}>
-            Join Our Team
-          </Link>
+          </a>
         </div>
       )}
 
