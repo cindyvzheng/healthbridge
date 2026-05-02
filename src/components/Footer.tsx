@@ -75,7 +75,7 @@ export default function Footer() {
           gap: 12,
         }}>
           <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13 }}>
-            © {new Date().getFullYear()} HealthBridge.
+            © {HealthBridge.
           </p>
           <div style={{ display: "flex", gap: 20 }}>
             <Link href="/terms" style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, textDecoration: "none" }}
