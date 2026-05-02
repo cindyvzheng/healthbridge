@@ -117,28 +117,7 @@ export default function Nav() {
             >
               Subscribe
             </Link>
-            <Link href="/join" style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              marginLeft: 8,
-              background: "var(--ink)",
-              color: "var(--cream)",
-              padding: "9px 18px",
-              borderRadius: 4,
-              fontFamily: "Syne, system-ui, sans-serif",
-              fontWeight: 700,
-              fontSize: 12,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              textDecoration: "none",
-              transition: "background 0.2s",
-            }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--forest)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--ink)"; }}
-            >
-              Join Team
-            </Link>
+            
           </nav>
 
           {/* Mobile hamburger */}
