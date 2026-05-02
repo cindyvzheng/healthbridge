@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 /* ---------- MARQUEE ---------- */
 function Marquee() {
@@ -86,30 +86,10 @@ const quizQuestions = [
 ];
 
 const quizResults: Record<string, { title: string; desc: string; color: string; emoji: string }> = {
-  policy: {
-    title: "Health Policy",
-    desc: "You want to change the system from within. From Medicaid to the ACA, you understand that policy shapes who gets care.",
-    color: "#3E1B4D",
-    emoji: "⚖️",
-  },
-  economics: {
-    title: "Health Economics",
-    desc: "You want to understand the money. Why does insulin cost so much? You're determined to figure it out — and fix it.",
-    color: "#2596be",
-    emoji: "📊",
-  },
-  biotech: {
-    title: "Biotech & Health Tech",
-    desc: "You want to build the future. AI diagnostics, telemedicine, gene therapy — you're drawn to what's next.",
-    color: "#1A6B8A",
-    emoji: "🔬",
-  },
-  admin: {
-    title: "Health Administration",
-    desc: "You want to make things run right. Operations, leadership, and systems efficiency are your strengths.",
-    color: "#3D5A80",
-    emoji: "🏥",
-  },
+  policy: { title: "Health Policy", desc: "You want to change the system from within. From Medicaid to the ACA, you understand that policy shapes who gets care.", color: "#3E1B4D", emoji: "⚖️" },
+  economics: { title: "Health Economics", desc: "You want to understand the money. Why does insulin cost so much? You're determined to figure it out — and fix it.", color: "#2596be", emoji: "📊" },
+  biotech: { title: "Biotech & Health Tech", desc: "You want to build the future. AI diagnostics, telemedicine, gene therapy — you're drawn to what's next.", color: "#1A6B8A", emoji: "🔬" },
+  admin: { title: "Health Administration", desc: "You want to make things run right. Operations, leadership, and systems efficiency are your strengths.", color: "#3D5A80", emoji: "🏥" },
 };
 
 function Quiz() {
@@ -199,14 +179,8 @@ function Quiz() {
             fontFamily: "Plus Jakarta Sans, sans-serif", fontSize: 15,
             color: "var(--text-muted)", cursor: "pointer", transition: "all 0.15s",
           }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.borderColor = "var(--forest)"; el.style.color = "var(--ink)"; el.style.transform = "translateX(4px)";
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.borderColor = "var(--border)"; el.style.color = "var(--text-muted)"; el.style.transform = "";
-            }}
+            onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "var(--forest)"; el.style.color = "var(--ink)"; el.style.transform = "translateX(4px)"; }}
+            onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "var(--border)"; el.style.color = "var(--text-muted)"; el.style.transform = ""; }}
           >{opt.label}</button>
         ))}
       </div>
@@ -224,12 +198,18 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [subDone, setSubDone] = useState(false);
 
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim()) {
+      window.open(`https://healthbridge.beehiiv.com/subscribe?email=${encodeURIComponent(email)}`, "_blank");
+      setSubDone(true);
+    }
+  };
+
   return (
     <>
       {/* ══════════════════════ HERO ══════════════════════ */}
       <section ref={heroRef} style={{ minHeight: "100svh", background: "var(--cream)", display: "flex", flexDirection: "column", position: "relative", overflow: "hidden", paddingTop: 68 }}>
-        
-
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="hero-inner">
           <div style={{ maxWidth: 800, margin: "0 auto", padding: "72px 40px 64px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
 
@@ -314,9 +294,7 @@ export default function Home() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
             style={{ maxWidth: 600, marginBottom: 56 }}>
-            <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 600, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-light)", marginBottom: 10 }}>
-              What we cover
-            </p>
+            <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 600, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-light)", marginBottom: 10 }}>What we cover</p>
             <h2 style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(28px, 4vw, 46px)", letterSpacing: "-0.02em", color: "var(--ink)", lineHeight: 1.05, marginBottom: 16 }}>
               The side of healthcare<br />
               <span style={{ fontFamily: "DM Serif Display, serif", fontStyle: "italic", fontWeight: 400, color: "var(--forest)" }}>no one teaches you.</span>
@@ -335,8 +313,7 @@ export default function Home() {
               <motion.div key={topic.label} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}>
                 <Link href="/resources" style={{
                   display: "flex", flexDirection: "column", background: topic.bg, borderRadius: 16,
-                  padding: "36px 32px 28px", textDecoration: "none", height: "100%",
-                  transition: "transform 0.2s, box-shadow 0.2s",
+                  padding: "36px 32px 28px", textDecoration: "none", height: "100%", transition: "transform 0.2s, box-shadow 0.2s",
                 }}
                   onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.transform = "translateY(-4px)"; el.style.boxShadow = "0 16px 40px rgba(0,0,0,0.08)"; }}
                   onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.transform = ""; el.style.boxShadow = ""; }}
@@ -360,15 +337,9 @@ export default function Home() {
         <div style={{ maxWidth: 640, margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
             style={{ textAlign: "center", marginBottom: 56 }}>
-            <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 600, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-light)", marginBottom: 10 }}>
-              Career quiz
-            </p>
-            <h2 style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(28px, 4vw, 46px)", letterSpacing: "-0.02em", color: "var(--ink)", lineHeight: 1.05, marginBottom: 16 }}>
-              Find your path.
-            </h2>
-            <p style={{ fontFamily: "Plus Jakarta Sans, sans-serif", fontSize: 16, color: "var(--text-muted)", lineHeight: 1.75 }}>
-              Take our 3-question quiz to discover which healthcare career fits you.
-            </p>
+            <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 600, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-light)", marginBottom: 10 }}>Career quiz</p>
+            <h2 style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(28px, 4vw, 46px)", letterSpacing: "-0.02em", color: "var(--ink)", lineHeight: 1.05, marginBottom: 16 }}>Find your path.</h2>
+            <p style={{ fontFamily: "Plus Jakarta Sans, sans-serif", fontSize: 16, color: "var(--text-muted)", lineHeight: 1.75 }}>Take our 3-question quiz to discover which healthcare career fits you.</p>
           </motion.div>
           <Quiz />
         </div>
@@ -429,8 +400,6 @@ export default function Home() {
         </div>
       </section>
 
-    
-
       {/* ══════════════════════ NEWSLETTER ══════════════════════ */}
       <section id="newsletter" style={{ background: "var(--forest)", padding: "96px 40px" }}>
         <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
@@ -449,11 +418,11 @@ export default function Home() {
               <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
                 style={{ background: "rgba(255,255,255,0.12)", borderRadius: 12, padding: "20px 32px", display: "inline-block" }}>
                 <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: 16, color: "white" }}>
-                  ✓ You&apos;re in — see you next week.
+                  ✓ Redirecting you to Beehiiv to confirm your subscription!
                 </p>
               </motion.div>
             ) : (
-              <form onSubmit={(e) => { e.preventDefault(); if (email.trim()) setSubDone(true); }}
+              <form onSubmit={handleNewsletterSubmit}
                 style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 460, margin: "0 auto" }}>
                 <input
                   type="email"
@@ -501,7 +470,6 @@ export default function Home() {
         @media (max-width: 900px) {
           .hero-inner > div { flex-direction: column !important; padding: 0 24px !important; }
           .topics-grid { grid-template-columns: 1fr !important; }
-          .join-grid { grid-template-columns: 1fr !important; }
           section { padding-left: 24px !important; padding-right: 24px !important; }
         }
       `}</style>
