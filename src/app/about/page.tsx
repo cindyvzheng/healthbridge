@@ -123,7 +123,7 @@ export default function AboutPage() {
 
             <Link href="/contact" className="btn-secondary">Get In Touch</Link>
           </div>
-        </div>
+
       </section>
 
       <style>{`
