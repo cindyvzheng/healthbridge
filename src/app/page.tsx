@@ -228,20 +228,7 @@ export default function Home() {
     <>
       {/* ══════════════════════ HERO ══════════════════════ */}
       <section ref={heroRef} style={{ minHeight: "100svh", background: "var(--cream)", display: "flex", flexDirection: "column", position: "relative", overflow: "hidden", paddingTop: 68 }}>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.1 }}
-          style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "11px 40px", borderBottom: "1px solid var(--border)", flexWrap: "wrap", gap: 8 }}>
-          <span style={{ fontFamily: "Syne, sans-serif", fontWeight: 600, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-light)" }}>
-            Est. 2026 · Brooklyn, NY
-          </span>
-          <div style={{ display: "flex", gap: 20 }}>
-            {["Economics", "Policy", "Biotech", "Administration"].map(t => (
-              <span key={t} style={{ fontFamily: "Syne, sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-light)" }}>{t}</span>
-            ))}
-          </div>
-          <span style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--forest)" }}>
-            Free For All Students
-          </span>
-        </motion.div>
+        
 
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="hero-inner">
           <div style={{ maxWidth: 800, margin: "0 auto", padding: "72px 40px 64px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
@@ -276,7 +263,7 @@ export default function Home() {
 
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.78 }}
               style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center", marginBottom: 64 }}>
-              <a href="#quiz" style={{
+              <Link href="/quiz" style={{
                 display: "inline-flex", alignItems: "center", gap: 10, background: "var(--ink)", color: "white",
                 padding: "14px 28px", borderRadius: 4, fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: 13,
                 letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", transition: "background 0.2s",
@@ -286,7 +273,7 @@ export default function Home() {
               >
                 Find Your Path
                 <svg width="15" height="15" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              </a>
+              </Link>
               <Link href="/resources" style={{
                 display: "inline-flex", alignItems: "center", gap: 10, background: "transparent", color: "var(--ink)",
                 padding: "13px 28px", borderRadius: 4, fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: 13,
@@ -442,59 +429,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════ JOIN CTA ══════════════════════ */}
-      <section style={{ background: "var(--cream-dark)", padding: "96px 40px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, border: "1px solid var(--border)", borderRadius: 8, overflow: "hidden" }} className="join-grid">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-              style={{ padding: "64px 56px", background: "white" }}>
-              <p style={{ fontFamily: "Syne, sans-serif", fontWeight: 600, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-light)", marginBottom: 16 }}>Get involved</p>
-              <h2 style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, fontSize: "clamp(32px, 4vw, 50px)", letterSpacing: "-0.02em", lineHeight: 1.05, color: "var(--ink)", marginBottom: 20 }}>
-                Help us build<br />
-                <span style={{ fontFamily: "DM Serif Display, serif", fontStyle: "italic", fontWeight: 400, color: "var(--forest)" }}>the platform</span><br />
-                you needed.
-              </h2>
-              <p style={{ fontFamily: "Plus Jakarta Sans, sans-serif", fontSize: 16, color: "var(--text-muted)", lineHeight: 1.75, marginBottom: 36, maxWidth: 380 }}>
-                No experience required. We&apos;re looking for writers, researchers, designers, and outreach volunteers who care about this work.
-              </p>
-              <Link href="/join" style={{
-                display: "inline-flex", alignItems: "center", gap: 10, background: "var(--ink)", color: "white",
-                padding: "14px 24px", borderRadius: 4, fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: 14,
-                letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none", transition: "background 0.2s",
-              }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--forest)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--ink)"; }}
-              >
-                Apply Now
-                <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              </Link>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.15 }}
-              style={{ background: "var(--ink)", padding: "64px 56px" }}>
-              <p style={{ fontFamily: "Syne, sans-serif", fontWeight: 600, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: 32 }}>Open Roles</p>
-              <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-                {[
-                  { title: "Content Writer", detail: "Research · Writing · 2–4 hrs/wk" },
-                  { title: "Researcher", detail: "Resources · Verification · 2–3 hrs/wk" },
-                  { title: "Outreach", detail: "Community · Social · 2–4 hrs/wk" },
-                  { title: "Web & Design", detail: "Code · Design · 3–5 hrs/wk" },
-                ].map((role, i) => (
-                  <div key={role.title} style={{ padding: "20px 0", borderBottom: i < 3 ? "1px solid rgba(255,255,255,0.08)" : "none", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-                    <div>
-                      <p style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: 17, color: "white", marginBottom: 4 }}>{role.title}</p>
-                      <p style={{ fontFamily: "Plus Jakarta Sans, sans-serif", fontSize: 13, color: "rgba(255,255,255,0.4)" }}>{role.detail}</p>
-                    </div>
-                    <div style={{ width: 28, height: 28, borderRadius: "50%", border: "1px solid rgba(255,255,255,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      <svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="rgba(255,255,255,0.5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+    
 
       {/* ══════════════════════ NEWSLETTER ══════════════════════ */}
       <section id="newsletter" style={{ background: "var(--forest)", padding: "96px 40px" }}>
