@@ -1,7 +1,7 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 /* ---------- MARQUEE ---------- */
 function Marquee() {
