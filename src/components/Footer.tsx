@@ -53,14 +53,14 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <p style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 16, marginBottom: 16 }}>Say Hello</p>
-            
-              href="mailto:hello@healthbridgeproject.org"
-              style={{ color: "rgba(255,255,255,0.65)", fontSize: 14, textDecoration: "none", wordBreak: "break-all" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
-            >
-              hello@healthbridgeproject.org
-            </a>
+            <a
+            href="mailto:hello@healthbridgeproject.org"
+            style={{ color: "rgba(255,255,255,0.65)", fontSize: 14, textDecoration: "none", wordBreak: "break-all" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
+          >
+            hello@healthbridgeproject.org
+          </a>
             <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 13, marginTop: 8 }}>We respond within 48 hours.</p>
           </div>
         </div>
