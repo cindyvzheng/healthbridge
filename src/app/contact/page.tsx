@@ -28,7 +28,7 @@ export default function ContactPage() {
             Contact
           </p>
           <h1 style={{
-            "Playfair Display, serif", serif",
+            fontFamily: "Playfair Display, serif",
             fontSize: "clamp(36px, 5vw, 56px)",
             fontWeight: 700,
             color: "var(--forest)",
