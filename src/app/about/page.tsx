@@ -61,10 +61,14 @@ export default function AboutPage() {
             </div>
 
           
+           </div>
             </div>
+            {/* end gradient card */}
           </div>
+          {/* end sidebar */}
 
           {/* Main content */}
+      
           <div style={{ fontFamily: "Plus Jakarta Sans, sans-serif", fontSize: "clamp(16px, 2vw, 18px)", color: "var(--text-muted)", lineHeight: 1.85 }}>
 
             <p style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-light)", marginBottom: 20 }}>
@@ -123,7 +127,9 @@ export default function AboutPage() {
 
             <Link href="/contact" className="btn-secondary">Get In Touch</Link>
           </div>
-
+          {/* end main content */}
+        </div>
+        {/* end grid */}
       </section>
 
       <style>{`
