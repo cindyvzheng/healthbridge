@@ -15,10 +15,10 @@ export default function AboutPage() {
       <section style={{ background: "var(--forest)", padding: "72px 24px 80px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: -80, right: -80, width: 320, height: 320, borderRadius: "50%", background: "rgba(255,255,255,0.05)" }} />
         <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
-          <p style={{ color: "rgba(255,255,255,0.55)", fontWeight: 600, fontSize: 12, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "Syne, sans-serif", marginBottom: 16 }}>
+          <p style={{ color: "rgba(255,255,255,0.55)", fontWeight: 600, fontSize: 12, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "Playfair Display, serif", marginBottom: 16 }}>
             About HealthBridge
           </p>
-          <h1 style={{ fontFamily: "Syne, sans-serif", fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 800, color: "white", lineHeight: 1.1, marginBottom: 20, maxWidth: 640, letterSpacing: "-0.02em" }}>
+          <h1 style={{ fontFamily: "Playfair Display, serif", fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 800, color: "white", lineHeight: 1.1, marginBottom: 20, maxWidth: 640, letterSpacing: "-0.02em" }}>
             Healthcare affects every<br />
             <span style={{ fontFamily: "DM Serif Display, serif", fontStyle: "italic", fontWeight: 400 }}>single one of us.</span>
           </h1>
@@ -48,7 +48,7 @@ export default function AboutPage() {
               width: "100%", aspectRatio: "4/5",
               background: "linear-gradient(135deg, var(--mint) 0%, var(--cream-dark) 100%)",
               borderRadius: 24, display: "flex", alignItems: "center", justifyContent: "center",
-              marginBottom: 24, overflow: "hidden", border: "1px solid var(--border)",
+              overflow: "hidden", border: "1px solid var(--border)",
             }}>
               <div style={{ textAlign: "center", padding: 24 }}>
                 <div style={{ width: 80, height: 80, borderRadius: "50%", background: "var(--forest)", margin: "0 auto 16px", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -59,19 +59,13 @@ export default function AboutPage() {
                 </div>
               </div>
             </div>
-
-          
-           </div>
-            </div>
-            {/* end gradient card */}
           </div>
           {/* end sidebar */}
 
           {/* Main content */}
-      
           <div style={{ fontFamily: "Plus Jakarta Sans, sans-serif", fontSize: "clamp(16px, 2vw, 18px)", color: "var(--text-muted)", lineHeight: 1.85 }}>
 
-            <p style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-light)", marginBottom: 20 }}>
+            <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-light)", marginBottom: 20 }}>
               Our Story
             </p>
 
@@ -95,7 +89,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <h2 style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, fontSize: 26, color: "var(--ink)", marginBottom: 16, letterSpacing: "-0.01em" }}>What We Do</h2>
+            <h2 style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: 26, color: "var(--ink)", marginBottom: 16, letterSpacing: "-0.01em" }}>What We Do</h2>
             <p style={{ marginBottom: 16 }}>
               HealthBridge is a free toolkit for students who want to fix healthcare — starting with their own career path.
             </p>
@@ -109,25 +103,27 @@ export default function AboutPage() {
               ))}
             </ul>
 
-            <h2 style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, fontSize: 26, color: "var(--ink)", marginBottom: 16, letterSpacing: "-0.01em" }}>Our Mission</h2>
+            <h2 style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: 26, color: "var(--ink)", marginBottom: 16, letterSpacing: "-0.01em" }}>Our Mission</h2>
             <p style={{ marginBottom: 48, fontSize: "clamp(17px, 2vw, 20px)", color: "var(--ink)", fontStyle: "italic", fontFamily: "DM Serif Display, serif", lineHeight: 1.5 }}>
               To bridge the gap between students and the systems that affect us all — by making healthcare careers accessible, free, and easy to understand.
             </p>
 
-            <h2 style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, fontSize: 26, color: "var(--ink)", marginBottom: 28, letterSpacing: "-0.01em" }}>Our Values</h2>
+            <h2 style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: 26, color: "var(--ink)", marginBottom: 28, letterSpacing: "-0.01em" }}>Our Values</h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16, marginBottom: 48 }}>
               {values.map(v => (
                 <div key={v.title} style={{ background: "var(--cream-dark)", borderRadius: 14, padding: "20px 22px", border: "1px solid var(--border)" }}>
                   <span style={{ fontSize: 22, display: "block", marginBottom: 10 }}>{v.emoji}</span>
-                  <p style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: 16, color: "var(--forest)", marginBottom: 6 }}>{v.title}</p>
+                  <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: 16, color: "var(--forest)", marginBottom: 6 }}>{v.title}</p>
                   <p style={{ color: "var(--text-muted)", fontSize: 14, lineHeight: 1.6 }}>{v.desc}</p>
                 </div>
               ))}
             </div>
 
             <Link href="/contact" className="btn-secondary">Get In Touch</Link>
+
           </div>
           {/* end main content */}
+
         </div>
         {/* end grid */}
       </section>
