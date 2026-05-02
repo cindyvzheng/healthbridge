@@ -31,9 +31,6 @@ export default function Footer() {
               </div>
               <span style={{ fontFamily: "Fraunces, Georgia, serif", fontWeight: 700, fontSize: 20 }}>HealthBridge</span>
             </div>
-            <p style={{ color: "rgba(255,255,255,0.65)", fontSize: 14, lineHeight: 1.7, maxWidth: 260 }}>
-              A free toolkit helping low-income students explore and enter healthcare careers.
-            </p>
           </div>
 
           {/* Links */}
@@ -53,32 +50,16 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Get Involved */}
-          <div>
-            <p style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 16, marginBottom: 16 }}>Get Involved</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {[
-                { href: "/join", label: "Join Our Team" },
-                { href: "/contact", label: "Contact Us" },
-              ].map(({ href, label }) => (
-                <Link key={href} href={href} style={{ color: "rgba(255,255,255,0.65)", textDecoration: "none", fontSize: 14, transition: "color 0.2s" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
-                >{label}</Link>
-              ))}
-            </div>
-          </div>
-
           {/* Contact */}
           <div>
             <p style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 16, marginBottom: 16 }}>Say Hello</p>
-            <a
-              href="mailto:joinhealthbridge@gmail.com"
+            
+              href="mailto:hello@healthbridgeproject.org"
               style={{ color: "rgba(255,255,255,0.65)", fontSize: 14, textDecoration: "none", wordBreak: "break-all" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
             >
-              joinhealthbridge@gmail.com
+              hello@healthbridgeproject.org
             </a>
             <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 13, marginTop: 8 }}>We respond within 48 hours.</p>
           </div>
@@ -96,9 +77,16 @@ export default function Footer() {
           <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13 }}>
             © {new Date().getFullYear()} HealthBridge. Free for all students.
           </p>
-          <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13 }}>
-            Built with care in Brooklyn.
-          </p>
+          <div style={{ display: "flex", gap: 20 }}>
+            <Link href="/terms" style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, textDecoration: "none" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.4)")}
+            >Terms of Service</Link>
+            <Link href="/privacy" style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, textDecoration: "none" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.4)")}
+            >Privacy Policy</Link>
+          </div>
         </div>
       </div>
     </footer>
