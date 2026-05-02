@@ -105,12 +105,7 @@ export default function ContactPage() {
               ))}
             </div>
 
-            <div style={{ marginTop: 24, padding: "20px 24px", background: "var(--mint)", borderRadius: 16, border: "1px solid var(--mint-dark)" }}>
-              <p style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 16, color: "var(--forest)", marginBottom: 6 }}>Want to join the team?</p>
-              <p style={{ color: "var(--text-muted)", fontSize: 14, marginBottom: 14 }}>If you&apos;re interested in contributing, check out our team page.</p>
-              <Link href="/join" className="btn-primary" style={{ fontSize: 14, padding: "10px 20px" }}>View Open Roles</Link>
-            </div>
-          </div>
+          
 
           {/* Form */}
           <div>
