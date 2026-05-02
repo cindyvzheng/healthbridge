@@ -57,16 +57,10 @@ export default function AboutPage() {
                     <path d="M16 21H24M20 17V25" stroke="var(--forest)" strokeWidth="2" strokeLinecap="round"/>
                   </svg>
                 </div>
-                <p style={{ fontFamily: "DM Serif Display, serif", fontWeight: 600, fontSize: 18, color: "var(--forest)" }}>Cindy Zheng</p>
-                <p style={{ color: "var(--text-muted)", fontSize: 14, marginTop: 4 }}>Founder, HealthBridge</p>
-                <p style={{ color: "var(--text-light)", fontSize: 13, marginTop: 4 }}>Brooklyn, NY · 2026</p>
               </div>
             </div>
 
-            <div style={{ background: "var(--mint)", borderRadius: 16, padding: "20px 24px" }}>
-              <p style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: 15, color: "var(--forest)", marginBottom: 8 }}>Get Involved</p>
-              <p style={{ color: "var(--text-muted)", fontSize: 14, marginBottom: 16, lineHeight: 1.6 }}>We&apos;re always looking for students to join the team — no experience required.</p>
-              <Link href="/join" className="btn-primary" style={{ display: "block", textAlign: "center" }}>Join Our Team</Link>
+          
             </div>
           </div>
 
@@ -127,10 +121,7 @@ export default function AboutPage() {
               ))}
             </div>
 
-            <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-              <Link href="/join" className="btn-primary">Join Our Team</Link>
-              <Link href="/contact" className="btn-secondary">Get In Touch</Link>
-            </div>
+            <Link href="/contact" className="btn-secondary">Get In Touch</Link>
           </div>
         </div>
       </section>
