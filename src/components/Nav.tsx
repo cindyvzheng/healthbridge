@@ -125,7 +125,7 @@ export default function Nav() {
             fontWeight: 700, fontSize: 14, letterSpacing: "0.08em", textTransform: "uppercase",
             textDecoration: "none", textAlign: "center",
           }}>
-            Subscribe — Free Newsletter
+            Subscribe
           </a>
         </div>
       )}
