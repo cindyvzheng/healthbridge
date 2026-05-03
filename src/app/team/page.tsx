@@ -46,7 +46,7 @@ const heads: Member[] = [
     name: "Kesiya Kurian",
     role: "Head of Content & Writing",
     bio: "I'm a student from New York passionate about medicine and law, and I hope to one day become a CRNA. I love helping people, reading, writing, and baking. I hope I'll be able to make a real impact through HealthBridge.",
-    photo: "/team/kesiya-kurian.jpg",
+    photo: "/team/kesiya-kurian.jpeg",
   },
 ];
 
