@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const links = [
@@ -35,16 +36,23 @@ export default function Nav() {
     }}>
       <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 40px" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}>
+
+          {/* Logo + wordmark */}
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 10 }}>
-            <div style={{ width: 32, height: 32, background: "var(--forest)", borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-                <path d="M10 3C10 3 5 6 5 10.5C5 13.538 7.238 16 10 16C12.762 16 15 13.538 15 10.5C15 6 10 3 10 3Z" fill="white" opacity="0.9"/>
-                <path d="M8 10.5H12M10 8.5V12.5" stroke="var(--forest)" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-            </div>
-            <span style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: 18, color: "var(--ink)", letterSpacing: "-0.03em" }}>HealthBridge</span>
+            <Image
+              src="/healthbridge.png"
+              alt="HealthBridge logo"
+              width={36}
+              height={36}
+              style={{ objectFit: "contain", flexShrink: 0 }}
+            />
+            <span style={{
+              fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: 18,
+              color: "var(--ink)", letterSpacing: "-0.03em",
+            }}>HealthBridge</span>
           </Link>
 
+          {/* Desktop nav */}
           <nav style={{ display: "flex", alignItems: "center", gap: 2 }} className="nav-desktop">
             {links.map(({ href, label }) => (
               <Link key={href} href={href} style={{
@@ -70,6 +78,7 @@ export default function Nav() {
             >Subscribe</a>
           </nav>
 
+          {/* Mobile hamburger */}
           <button onClick={() => setOpen(!open)} aria-label="Toggle menu" className="nav-mobile-btn"
             style={{ background: "none", border: "none", cursor: "pointer", padding: 8, display: "none" }}>
             <div style={{ width: 22, display: "flex", flexDirection: "column", gap: 5 }}>
@@ -81,6 +90,7 @@ export default function Nav() {
         </div>
       </div>
 
+      {/* Mobile drawer */}
       {open && (
         <div style={{ background: "var(--cream)", borderTop: "1px solid var(--border)", padding: "16px 24px 24px" }}>
           {links.map(({ href, label }) => (
