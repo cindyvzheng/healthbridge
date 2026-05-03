@@ -39,7 +39,7 @@ const heads: Member[] = [
     role: "Head of Newsletter & Events",
     bio: "I'm a student from Connecticut involved in FBLA, Robotics, and Coding. Beyond school, I've done research in biology and computer science at universities like Yale, UConn, and Fairfield University. I wanted to get involved in HealthBridge to help students find opportunities in healthcare and build their careers early.",
     photo: "/team/aman.jpg",
-    photoPos: "center 5%",
+    photoPos: "60% 5%",
   },
   {
     name: "Arnav Chhatwal",
