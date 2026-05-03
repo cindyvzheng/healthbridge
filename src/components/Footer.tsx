@@ -1,5 +1,6 @@
-  "use client";
+"use client";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -15,27 +16,24 @@ export default function Footer() {
           gap: 48,
           marginBottom: 48,
         }}>
+
           {/* Brand */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-              <div style={{
-                width: 36, height: 36,
-                background: "rgba(255,255,255,0.15)",
-                borderRadius: 10,
-                display: "flex", alignItems: "center", justifyContent: "center",
-              }}>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 3C10 3 5 6 5 10.5C5 13.538 7.238 16 10 16C12.762 16 15 13.538 15 10.5C15 6 10 3 10 3Z" fill="white" opacity="0.9"/>
-                  <path d="M8 10.5H12M10 8.5V12.5" stroke="var(--forest)" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-              </div>
-              <span style={{ fontFamily: "Fraunces, Georgia, serif", fontWeight: 700, fontSize: 20 }}>HealthBridge</span>
+              <Image
+                src="/healthbridge.png"
+                alt="HealthBridge logo"
+                width={36}
+                height={36}
+                style={{ objectFit: "contain", flexShrink: 0, filter: "brightness(0) invert(1)" }}
+              />
+              <span style={{ fontFamily: "Playfair Display, Georgia, serif", fontWeight: 700, fontSize: 20 }}>HealthBridge</span>
             </div>
           </div>
 
           {/* Links */}
           <div>
-            <p style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 16, marginBottom: 16 }}>Explore</p>
+            <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 600, fontSize: 16, marginBottom: 16 }}>Explore</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {[
                 { href: "/resources", label: "Resource Library" },
@@ -52,15 +50,15 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <p style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 16, marginBottom: 16 }}>Say Hello</p>
+            <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 600, fontSize: 16, marginBottom: 16 }}>Say Hello</p>
             <a
-            href="mailto:hello@healthbridgeproject.org"
-            style={{ color: "rgba(255,255,255,0.65)", fontSize: 14, textDecoration: "none", wordBreak: "break-all" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
-          >
-            hello@healthbridgeproject.org
-          </a>
+              href="mailto:hello@healthbridgeproject.org"
+              style={{ color: "rgba(255,255,255,0.65)", fontSize: 14, textDecoration: "none", wordBreak: "break-all" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
+            >
+              hello@healthbridgeproject.org
+            </a>
             <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 13, marginTop: 8 }}>We respond within 48 hours.</p>
           </div>
         </div>
@@ -90,5 +88,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  ); 
+  );
 }
