@@ -16,7 +16,6 @@ export default function Footer() {
           gap: 48,
           marginBottom: 48,
         }}>
-
           {/* Brand */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
@@ -72,9 +71,14 @@ export default function Footer() {
           flexWrap: "wrap",
           gap: 12,
         }}>
-          <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13 }}>
-            © HealthBridge
-          </p>
+          <div>
+            <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginBottom: 4 }}>
+              © HealthBridge
+            </p>
+            <p style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>
+              A fiscally sponsored 501(c)(3) nonprofit via Hack Club Bank · EIN 81-2908499
+            </p>
+          </div>
           <div style={{ display: "flex", gap: 20 }}>
             <Link href="/terms" style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, textDecoration: "none" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
