@@ -13,15 +13,132 @@ function RotatingBadge() {
         <defs>
           <path id="circlePath" d={`M60,60 m-${radius},0 a${radius},${radius} 0 1,1 ${radius * 2},0 a${radius},${radius} 0 1,1 -${radius * 2},0`} />
         </defs>
-        <text fontFamily="Playfair Display, serif" fontSize="9.5" fontWeight="700" letterSpacing="1" fill="var(--forest)" textAnchor="start">
+        <text fontFamily="Playfair Display, serif" fontSize="9.5" fontWeight="700" letterSpacing="1" fill="rgba(255,255,255,0.6)" textAnchor="start">
           <textPath href="#circlePath">{text}{text}</textPath>
         </text>
       </svg>
       <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <div style={{ width: 56, height: 56, borderRadius: "50%", background: "var(--forest)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>
+        <div style={{ width: 56, height: 56, borderRadius: "50%", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>
           🌱
         </div>
       </div>
+    </div>
+  );
+}
+
+/* ---------- BRIDGE GRAPHIC ---------- */
+function BridgeGraphic() {
+  return (
+    <div style={{ position: "relative", width: "100%", maxWidth: 520, aspectRatio: "4/3" }}>
+      {/* Glowing backdrop */}
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "radial-gradient(ellipse at 50% 60%, rgba(255,255,255,0.08) 0%, transparent 70%)",
+        borderRadius: 24,
+      }} />
+
+      {/* Main SVG bridge illustration */}
+      <svg viewBox="0 0 520 390" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "100%", position: "relative", zIndex: 1 }}>
+
+        {/* Water reflection base */}
+        <ellipse cx="260" cy="340" rx="200" ry="18" fill="rgba(255,255,255,0.06)" />
+
+        {/* Bridge road/deck */}
+        <rect x="40" y="240" width="440" height="8" rx="4" fill="rgba(255,255,255,0.9)" />
+
+        {/* Bridge cables - left tower */}
+        {[0,1,2,3,4,5,6,7].map(i => (
+          <line key={`lc${i}`}
+            x1="175" y1="80"
+            x2={40 + i * 20} y2="240"
+            stroke="rgba(255,255,255,0.35)" strokeWidth="1.2"
+          />
+        ))}
+        {/* Bridge cables - right from left tower */}
+        {[0,1,2,3,4,5,6].map(i => (
+          <line key={`lrc${i}`}
+            x1="175" y1="80"
+            x2={200 + i * 20} y2="240"
+            stroke="rgba(255,255,255,0.35)" strokeWidth="1.2"
+          />
+        ))}
+
+        {/* Bridge cables - right tower */}
+        {[0,1,2,3,4,5,6,7].map(i => (
+          <line key={`rc${i}`}
+            x1="345" y1="80"
+            x2={480 - i * 20} y2="240"
+            stroke="rgba(255,255,255,0.35)" strokeWidth="1.2"
+          />
+        ))}
+        {[0,1,2,3,4,5,6].map(i => (
+          <line key={`rlc${i}`}
+            x1="345" y1="80"
+            x2={320 - i * 20} y2="240"
+            stroke="rgba(255,255,255,0.35)" strokeWidth="1.2"
+          />
+        ))}
+
+        {/* Left tower */}
+        <rect x="168" y="75" width="14" height="170" rx="3" fill="rgba(255,255,255,0.95)" />
+        {/* Left tower crossbar */}
+        <rect x="152" y="130" width="46" height="7" rx="3" fill="rgba(255,255,255,0.8)" />
+        <rect x="156" y="160" width="38" height="6" rx="3" fill="rgba(255,255,255,0.6)" />
+        {/* Left tower top spike */}
+        <polygon points="175,42 169,78 181,78" fill="rgba(255,255,255,0.95)" />
+
+        {/* Right tower */}
+        <rect x="338" y="75" width="14" height="170" rx="3" fill="rgba(255,255,255,0.95)" />
+        {/* Right tower crossbar */}
+        <rect x="322" y="130" width="46" height="7" rx="3" fill="rgba(255,255,255,0.8)" />
+        <rect x="326" y="160" width="38" height="6" rx="3" fill="rgba(255,255,255,0.6)" />
+        {/* Right tower top spike */}
+        <polygon points="345,42 339,78 351,78" fill="rgba(255,255,255,0.95)" />
+
+        {/* Suspension curve - main catenary */}
+        <path d="M 40 150 Q 175 220 260 195 Q 345 170 480 150" stroke="rgba(255,255,255,0.5)" strokeWidth="2" fill="none" strokeDasharray="0" />
+
+        {/* Bridge pillars below deck */}
+        <rect x="168" y="248" width="14" height="60" rx="2" fill="rgba(255,255,255,0.4)" />
+        <rect x="338" y="248" width="14" height="60" rx="2" fill="rgba(255,255,255,0.4)" />
+
+        {/* Water line */}
+        <path d="M 40 310 Q 130 305 260 308 Q 390 311 480 306" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" fill="none" />
+        <path d="M 60 320 Q 180 316 260 318 Q 360 320 460 316" stroke="rgba(255,255,255,0.12)" strokeWidth="1" fill="none" />
+
+        {/* Floating cards alongside bridge */}
+        {/* Card 1 - Health Policy */}
+        <g transform="translate(20, 130)" className="float-card-1">
+          <rect width="110" height="52" rx="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
+          <text x="12" y="20" fontFamily="Playfair Display, serif" fontSize="9" fill="rgba(255,255,255,0.5)" letterSpacing="1">PATHWAY</text>
+          <text x="12" y="36" fontFamily="Playfair Display, serif" fontSize="13" fontWeight="700" fill="white">Health Policy</text>
+          <text x="88" y="36" fontSize="16">⚖️</text>
+        </g>
+
+        {/* Card 2 - Health Economics */}
+        <g transform="translate(390, 155)" className="float-card-2">
+          <rect width="118" height="52" rx="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
+          <text x="12" y="20" fontFamily="Playfair Display, serif" fontSize="9" fill="rgba(255,255,255,0.5)" letterSpacing="1">PATHWAY</text>
+          <text x="12" y="36" fontFamily="Playfair Display, serif" fontSize="11.5" fontWeight="700" fill="white">Health Economics</text>
+          <text x="94" y="36" fontSize="16">📊</text>
+        </g>
+
+        {/* Card 3 - Biotech */}
+        <g transform="translate(60, 265)" className="float-card-3">
+          <rect width="100" height="52" rx="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
+          <text x="12" y="20" fontFamily="Playfair Display, serif" fontSize="9" fill="rgba(255,255,255,0.5)" letterSpacing="1">PATHWAY</text>
+          <text x="12" y="36" fontFamily="Playfair Display, serif" fontSize="13" fontWeight="700" fill="white">Biotech</text>
+          <text x="72" y="36" fontSize="16">🔬</text>
+        </g>
+
+        {/* Card 4 - Administration */}
+        <g transform="translate(360, 268)" className="float-card-1">
+          <rect width="130" height="52" rx="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
+          <text x="12" y="20" fontFamily="Playfair Display, serif" fontSize="9" fill="rgba(255,255,255,0.5)" letterSpacing="1">PATHWAY</text>
+          <text x="12" y="36" fontFamily="Playfair Display, serif" fontSize="11" fontWeight="700" fill="white">Health Admin</text>
+          <text x="102" y="36" fontSize="16">🏥</text>
+        </g>
+      </svg>
     </div>
   );
 }
@@ -164,7 +281,7 @@ function Quiz() {
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   const [email, setEmail] = useState("");
@@ -181,89 +298,123 @@ export default function Home() {
   return (
     <>
       {/* ══════════════════════ HERO ══════════════════════ */}
-      <section ref={heroRef} style={{ minHeight: "100svh", background: "var(--cream)", display: "flex", flexDirection: "column", position: "relative", overflow: "hidden", paddingTop: 68 }}>
+      <section ref={heroRef} style={{
+        background: "var(--forest)",
+        display: "flex", flexDirection: "column",
+        position: "relative", overflow: "hidden",
+        paddingTop: 68, minHeight: "100svh",
+      }}>
+        {/* Subtle noise texture overlay */}
+        <div style={{
+          position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none",
+          background: "radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.04) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 50%)",
+        }} />
 
-        {/* Animated gradient mesh blobs */}
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }}>
-          <div className="mesh-blob mesh-blob-1" />
-          <div className="mesh-blob mesh-blob-2" />
-          <div className="mesh-blob mesh-blob-3" />
-        </div>
+        <motion.div style={{ y: heroY, opacity: heroOpacity, position: "relative", zIndex: 1, flex: 1, display: "flex", alignItems: "center" }}>
+          <div style={{
+            maxWidth: 1200, margin: "0 auto", padding: "60px 48px 80px",
+            display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center",
+          }} className="hero-grid">
 
-        <motion.div style={{ y: heroY, opacity: heroOpacity, position: "relative", zIndex: 1 }} className="hero-inner">
-          <div style={{ maxWidth: 800, margin: "0 auto", padding: "72px 40px 64px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+            {/* Left — text */}
+            <div>
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
+                style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.8)", padding: "7px 16px", borderRadius: 50, fontFamily: "Playfair Display, serif", fontWeight: 600, fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 32, border: "1px solid rgba(255,255,255,0.15)" }}>
+                <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#7ECBA1", display: "inline-block" }} />
+                Free for all students · No login required
+              </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
-              style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--mint)", color: "var(--forest)", padding: "7px 16px", borderRadius: 50, fontFamily: "Playfair Display, serif", fontWeight: 600, fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 36 }}>
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--forest-muted)", display: "inline-block" }} />
-              Free for all students · No login required
-            </motion.div>
-
-            <div style={{ marginBottom: 32 }}>
-              <div style={{ overflow: "hidden", marginBottom: 4 }}>
-                <motion.h1 initial={{ y: 48, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.65, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(40px, 7vw, 76px)", lineHeight: 0.95, letterSpacing: "-0.03em", color: "var(--ink)", margin: 0 }}>
-                  Understanding healthcare
-                </motion.h1>
+              <div style={{ marginBottom: 28 }}>
+                <div style={{ overflow: "hidden", marginBottom: 4 }}>
+                  <motion.h1 initial={{ y: 56, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(36px, 5vw, 68px)", lineHeight: 0.95, letterSpacing: "-0.03em", color: "white", margin: 0 }}>
+                    Understanding
+                  </motion.h1>
+                </div>
+                <div style={{ overflow: "hidden", marginBottom: 4 }}>
+                  <motion.h1 initial={{ y: 56, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.7, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(36px, 5vw, 68px)", lineHeight: 0.95, letterSpacing: "-0.03em", color: "white", margin: 0 }}>
+                    healthcare
+                  </motion.h1>
+                </div>
+                <div style={{ overflow: "hidden" }}>
+                  <motion.h1 initial={{ y: 56, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.7, delay: 0.54, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ fontFamily: "DM Serif Display, serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(36px, 5vw, 68px)", lineHeight: 1.05, letterSpacing: "-0.02em", color: "rgba(255,255,255,0.55)", margin: 0 }}>
+                    shouldn&apos;t be this hard.
+                  </motion.h1>
+                </div>
               </div>
-              <div style={{ overflow: "hidden" }}>
-                <motion.h1 initial={{ y: 48, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.65, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ fontFamily: "DM Serif Display, serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(40px, 7vw, 76px)", lineHeight: 1.0, letterSpacing: "-0.02em", color: "var(--forest)", margin: 0 }}>
-                  shouldn&apos;t be this hard.
-                </motion.h1>
-              </div>
+
+              <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.7 }}
+                style={{ fontFamily: "Plus Jakarta Sans, sans-serif", fontSize: 17, color: "rgba(255,255,255,0.65)", lineHeight: 1.75, maxWidth: 460, marginBottom: 40 }}>
+                HealthBridge is the free toolkit for students who want to fix healthcare — starting with their own career path.
+              </motion.p>
+
+              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.82 }}
+                style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 56 }}>
+                <Link href="/quiz" style={{
+                  display: "inline-flex", alignItems: "center", gap: 10, background: "white", color: "var(--forest)",
+                  padding: "14px 28px", borderRadius: 4, fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: 13,
+                  letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", transition: "all 0.2s",
+                }}
+                  onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.background = "var(--mint)"; }}
+                  onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.background = "white"; }}
+                >
+                  Find Your Path
+                  <svg width="15" height="15" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </Link>
+                <Link href="/resources" style={{
+                  display: "inline-flex", alignItems: "center", gap: 10, background: "transparent", color: "rgba(255,255,255,0.85)",
+                  padding: "13px 28px", borderRadius: 4, fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: 13,
+                  letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", border: "1.5px solid rgba(255,255,255,0.3)", transition: "border-color 0.2s",
+                }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.7)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.3)"; }}
+                >
+                  Browse Resources
+                </Link>
+              </motion.div>
+
+              {/* Stats row */}
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 1.0 }}
+                style={{ display: "flex", alignItems: "center", gap: 0, paddingTop: 32, borderTop: "1px solid rgba(255,255,255,0.12)" }}>
+                {[
+                  { value: "100%", label: "Free resources" },
+                  { value: "4", label: "Career paths" },
+                  { value: "0", label: "Barriers" },
+                ].map((s, i) => (
+                  <div key={s.label} style={{ flex: 1, padding: "0 20px", borderRight: i < 2 ? "1px solid rgba(255,255,255,0.12)" : "none", paddingLeft: i === 0 ? 0 : 20 }}>
+                    <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(24px, 3vw, 36px)", letterSpacing: "-0.03em", color: "white", lineHeight: 1, marginBottom: 4 }}>{s.value}</p>
+                    <p style={{ fontFamily: "Plus Jakarta Sans, sans-serif", fontSize: 13, color: "rgba(255,255,255,0.45)" }}>{s.label}</p>
+                  </div>
+                ))}
+                <div style={{ paddingLeft: 20 }}>
+                  <RotatingBadge />
+                </div>
+              </motion.div>
             </div>
 
-            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.65 }}
-              style={{ fontFamily: "Plus Jakarta Sans, sans-serif", fontSize: 17, color: "var(--text-muted)", lineHeight: 1.75, maxWidth: 520, marginBottom: 40 }}>
-              HealthBridge is the free toolkit for students who want to fix healthcare — starting with their own career path.
-            </motion.p>
-
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.78 }}
-              style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center", marginBottom: 64 }}>
-              <Link href="/quiz" style={{
-                display: "inline-flex", alignItems: "center", gap: 10, background: "var(--ink)", color: "white",
-                padding: "14px 28px", borderRadius: 4, fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: 13,
-                letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", transition: "background 0.2s",
-              }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--forest)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--ink)"; }}
-              >
-                Find Your Path
-                <svg width="15" height="15" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              </Link>
-              <Link href="/resources" style={{
-                display: "inline-flex", alignItems: "center", gap: 10, background: "transparent", color: "var(--ink)",
-                padding: "13px 28px", borderRadius: 4, fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: 13,
-                letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", border: "1.5px solid var(--border)", transition: "border-color 0.2s",
-              }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--ink)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--border)"; }}
-              >
-                Browse Resources
-              </Link>
+            {/* Right — bridge graphic */}
+            <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+              className="hero-graphic"
+            >
+              <BridgeGraphic />
             </motion.div>
 
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.95 }}
-              style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 0, paddingTop: 32, borderTop: "1px solid var(--border)" }}>
-              {[
-                { value: "100%", label: "Free resources" },
-                { value: "4", label: "Career paths" },
-                { value: "0", label: "Barriers to access" },
-              ].map((s, i) => (
-                <div key={s.label} style={{ flex: 1, textAlign: "center", padding: "0 24px", borderRight: i < 2 ? "1px solid var(--border)" : "none" }}>
-                  <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(28px, 4vw, 40px)", letterSpacing: "-0.03em", color: "var(--forest)", lineHeight: 1, marginBottom: 4 }}>{s.value}</p>
-                  <p style={{ fontFamily: "Plus Jakarta Sans, sans-serif", fontSize: 13, color: "var(--text-light)" }}>{s.label}</p>
-                </div>
-              ))}
-              <div style={{ paddingLeft: 32, borderLeft: "1px solid var(--border)" }}>
-                <RotatingBadge />
-              </div>
-            </motion.div>
           </div>
         </motion.div>
+
+        {/* Wave cut at bottom */}
+        <div style={{ position: "absolute", bottom: -2, left: 0, right: 0, zIndex: 2, lineHeight: 0 }}>
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ width: "100%", height: 80, display: "block" }}>
+            <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="var(--cream)" />
+          </svg>
+        </div>
       </section>
 
       {/* ══════════════════════ TOPICS ══════════════════════ */}
@@ -381,16 +532,13 @@ export default function Home() {
       <section id="newsletter" style={{ background: "var(--forest)", padding: "96px 40px" }}>
         <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 600, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 16 }}>
-              Weekly digest
-            </p>
+            <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 600, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 16 }}>Weekly digest</p>
             <h2 style={{ fontFamily: "Playfair Display, serif", fontWeight: 800, fontSize: "clamp(32px, 5vw, 52px)", letterSpacing: "-0.02em", color: "white", lineHeight: 1.05, marginBottom: 16 }}>
               Stay in the loop.
             </h2>
             <p style={{ fontFamily: "Plus Jakarta Sans, sans-serif", fontSize: 16, color: "rgba(255,255,255,0.7)", lineHeight: 1.75, maxWidth: 460, margin: "0 auto 40px" }}>
               One healthcare topic explained simply, plus curated opportunities for students — straight to your inbox every week.
             </p>
-
             {subDone ? (
               <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
                 style={{ background: "rgba(255,255,255,0.12)", borderRadius: 12, padding: "20px 32px", display: "inline-block" }}>
@@ -401,25 +549,17 @@ export default function Home() {
             ) : (
               <form onSubmit={handleNewsletterSubmit}
                 style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 460, margin: "0 auto" }}>
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  required
+                <input type="email" placeholder="your@email.com" value={email} onChange={e => setEmail(e.target.value)} required
                   style={{ width: "100%", padding: "14px 20px", border: "none", outline: "none", fontFamily: "Plus Jakarta Sans, sans-serif", fontSize: 15, color: "var(--ink)", background: "white", borderRadius: 6, boxShadow: "0 4px 24px rgba(0,0,0,0.15)" }}
                 />
                 <button type="submit" style={{
                   background: "var(--ink)", color: "white", padding: "14px 24px", border: "none",
                   fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: 13, letterSpacing: "0.06em",
-                  textTransform: "uppercase", cursor: "pointer", whiteSpace: "nowrap", transition: "background 0.2s",
-                  borderRadius: 6, width: "100%",
+                  textTransform: "uppercase", cursor: "pointer", transition: "background 0.2s", borderRadius: 6, width: "100%",
                 }}
                   onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--forest-light)"; }}
                   onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--ink)"; }}
-                >
-                  Subscribe
-                </button>
+                >Subscribe</button>
               </form>
             )}
           </motion.div>
@@ -427,43 +567,16 @@ export default function Home() {
       </section>
 
       <style>{`
-        /* ── Gradient mesh blobs ── */
-        .mesh-blob {
-          position: absolute;
-          border-radius: 50%;
-          filter: blur(80px);
-          opacity: 0.45;
-          animation: meshFloat 12s ease-in-out infinite;
-        }
-        .mesh-blob-1 {
-          width: 600px; height: 600px;
-          background: radial-gradient(circle, #a8d5b5 0%, transparent 70%);
-          top: -120px; left: -100px;
-          animation-duration: 14s;
-        }
-        .mesh-blob-2 {
-          width: 500px; height: 500px;
-          background: radial-gradient(circle, #c8e6c0 0%, transparent 70%);
-          top: 40%; right: -80px;
-          animation-duration: 18s;
-          animation-delay: -4s;
-        }
-        .mesh-blob-3 {
-          width: 400px; height: 400px;
-          background: radial-gradient(circle, #e8f5e9 0%, transparent 70%);
-          bottom: 0; left: 30%;
-          animation-duration: 16s;
-          animation-delay: -8s;
-        }
-        @keyframes meshFloat {
-          0%, 100% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(30px, -40px) scale(1.05); }
-          66% { transform: translate(-20px, 30px) scale(0.97); }
-        }
+        .float-card-1 { animation: floatA 6s ease-in-out infinite; }
+        .float-card-2 { animation: floatB 7s ease-in-out infinite; }
+        .float-card-3 { animation: floatC 8s ease-in-out infinite; }
+        @keyframes floatA { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
+        @keyframes floatB { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        @keyframes floatC { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-6px); } }
 
-        /* ── Responsive ── */
         @media (max-width: 900px) {
-          .hero-inner > div { flex-direction: column !important; padding: 0 24px !important; }
+          .hero-grid { grid-template-columns: 1fr !important; }
+          .hero-graphic { display: none !important; }
           .topics-grid { grid-template-columns: 1fr !important; }
           section { padding-left: 24px !important; padding-right: 24px !important; }
         }
