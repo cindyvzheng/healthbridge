@@ -62,6 +62,13 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Brand blurb + EIN on left */}
+        <div style={{ marginBottom: 32 }}>
+          <p style={{ color: "rgba(255,255,255,0.5)", fontSize: 13, lineHeight: 1.7, maxWidth: 480 }}>
+            HealthBridge is a 501(c)(3) nonprofit committed to making healthcare careers accessible to all students — free, always. EIN: 81-2908499
+          </p>
+        </div>
+
         <div style={{
           borderTop: "1px solid rgba(255,255,255,0.12)",
           paddingTop: 24,
@@ -72,11 +79,11 @@ export default function Footer() {
           gap: 12,
         }}>
           <div>
-            <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, marginBottom: 4 }}>
+            <p style={{ color: "white", fontSize: 22, fontFamily: "Playfair Display, serif", fontWeight: 800, marginBottom: 4 }}>
               © HealthBridge
             </p>
-            <p style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>
-              HealthBridge is an official 501(c)(3) nonprofit. EIN 81-2908499. Your donation is tax-deductible. All rights reserved.
+            <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 12 }}>
+              All rights reserved.
             </p>
           </div>
           <div style={{ display: "flex", gap: 20 }}>
