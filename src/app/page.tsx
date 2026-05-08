@@ -1,35 +1,7 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-
-/* ---------- MARQUEE ---------- */
-function Marquee() {
-  const items = [
-    "Health Economics", "Health Policy", "Biotech", "Health Administration",
-    "Free Resources", "Find Your Path", "No Cost", "Student-Built",
-    "Weekly Digest", "For Every Student",
-  ];
-  const doubled = [...items, ...items];
-  return (
-    <div style={{ background: "var(--ink)", overflow: "hidden", padding: "14px 0", borderTop: "1px solid #222", borderBottom: "1px solid #1A2D3A" }}>
-      <div className="marquee-track" style={{ display: "flex", alignItems: "center", gap: 0 }}>
-        {doubled.map((item, i) => (
-          <span key={i} style={{
-            display: "inline-flex", alignItems: "center", gap: 24,
-            fontFamily: "Playfair Display, serif", fontWeight: 700, fontSize: 13,
-            letterSpacing: "0.1em", textTransform: "uppercase",
-            color: i % 5 === 2 ? "var(--amber-light)" : "rgba(255,255,255,0.7)",
-            padding: "0 24px", whiteSpace: "nowrap",
-          }}>
-            {item}
-            <span style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--forest-light)", display: "inline-block", flexShrink: 0 }} />
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 /* ---------- ROTATING BADGE ---------- */
 function RotatingBadge() {
@@ -210,7 +182,15 @@ export default function Home() {
     <>
       {/* ══════════════════════ HERO ══════════════════════ */}
       <section ref={heroRef} style={{ minHeight: "100svh", background: "var(--cream)", display: "flex", flexDirection: "column", position: "relative", overflow: "hidden", paddingTop: 68 }}>
-        <motion.div style={{ y: heroY, opacity: heroOpacity }} className="hero-inner">
+
+        {/* Animated gradient mesh blobs */}
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }}>
+          <div className="mesh-blob mesh-blob-1" />
+          <div className="mesh-blob mesh-blob-2" />
+          <div className="mesh-blob mesh-blob-3" />
+        </div>
+
+        <motion.div style={{ y: heroY, opacity: heroOpacity, position: "relative", zIndex: 1 }} className="hero-inner">
           <div style={{ maxWidth: 800, margin: "0 auto", padding: "72px 40px 64px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
 
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
@@ -285,9 +265,6 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
-
-      {/* ══════════════════════ MARQUEE ══════════════════════ */}
-      <Marquee />
 
       {/* ══════════════════════ TOPICS ══════════════════════ */}
       <section style={{ background: "var(--cream)", padding: "96px 40px" }}>
@@ -449,24 +426,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════ BOTTOM MARQUEE ══════════════════════ */}
-      <div style={{ background: "var(--ink)", overflow: "hidden", padding: "16px 0", borderTop: "1px solid #1A2D3A" }}>
-        <div className="marquee-track" style={{ display: "flex", alignItems: "center" }}>
-          {[...Array(20)].map((_, i) => (
-            <span key={i} style={{
-              display: "inline-flex", alignItems: "center", gap: 24,
-              fontFamily: "DM Serif Display, serif", fontStyle: "italic", fontSize: 22,
-              color: i % 3 === 0 ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.2)",
-              padding: "0 28px", whiteSpace: "nowrap",
-            }}>
-              {i % 2 === 0 ? "Healthcare for everyone." : "No barriers."}
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--forest-light)", display: "inline-block", flexShrink: 0 }} />
-            </span>
-          ))}
-        </div>
-      </div>
-
       <style>{`
+        /* ── Gradient mesh blobs ── */
+        .mesh-blob {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(80px);
+          opacity: 0.45;
+          animation: meshFloat 12s ease-in-out infinite;
+        }
+        .mesh-blob-1 {
+          width: 600px; height: 600px;
+          background: radial-gradient(circle, #a8d5b5 0%, transparent 70%);
+          top: -120px; left: -100px;
+          animation-duration: 14s;
+        }
+        .mesh-blob-2 {
+          width: 500px; height: 500px;
+          background: radial-gradient(circle, #c8e6c0 0%, transparent 70%);
+          top: 40%; right: -80px;
+          animation-duration: 18s;
+          animation-delay: -4s;
+        }
+        .mesh-blob-3 {
+          width: 400px; height: 400px;
+          background: radial-gradient(circle, #e8f5e9 0%, transparent 70%);
+          bottom: 0; left: 30%;
+          animation-duration: 16s;
+          animation-delay: -8s;
+        }
+        @keyframes meshFloat {
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          33% { transform: translate(30px, -40px) scale(1.05); }
+          66% { transform: translate(-20px, 30px) scale(0.97); }
+        }
+
+        /* ── Responsive ── */
         @media (max-width: 900px) {
           .hero-inner > div { flex-direction: column !important; padding: 0 24px !important; }
           .topics-grid { grid-template-columns: 1fr !important; }
