@@ -108,15 +108,15 @@ function BridgeGraphic() {
 
         {/* Floating cards alongside bridge */}
         {/* Card 1 - Health Policy */}
-        <g transform="translate(20, 130)" className="float-card-1">
+        <g transform="translate(20, 80)" className="float-card-1">
           <rect width="110" height="52" rx="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
           <text x="12" y="20" fontFamily="Playfair Display, serif" fontSize="9" fill="rgba(255,255,255,0.5)" letterSpacing="1">PATHWAY</text>
           <text x="12" y="36" fontFamily="Playfair Display, serif" fontSize="13" fontWeight="700" fill="white">Health Policy</text>
-          <text x="88" y="36" fontSize="16">⚖️</text>
+          <text x="82" y="36" fontSize="16">⚖️</text>
         </g>
 
         {/* Card 2 - Health Economics */}
-        <g transform="translate(390, 155)" className="float-card-2">
+        <g transform="translate(392, 80)" className="float-card-2">
           <rect width="118" height="52" rx="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
           <text x="12" y="20" fontFamily="Playfair Display, serif" fontSize="9" fill="rgba(255,255,255,0.5)" letterSpacing="1">PATHWAY</text>
           <text x="12" y="36" fontFamily="Playfair Display, serif" fontSize="11.5" fontWeight="700" fill="white">Health Economics</text>
@@ -124,7 +124,7 @@ function BridgeGraphic() {
         </g>
 
         {/* Card 3 - Biotech */}
-        <g transform="translate(60, 265)" className="float-card-3">
+        <g transform="translate(20, 290)" className="float-card-3">
           <rect width="100" height="52" rx="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
           <text x="12" y="20" fontFamily="Playfair Display, serif" fontSize="9" fill="rgba(255,255,255,0.5)" letterSpacing="1">PATHWAY</text>
           <text x="12" y="36" fontFamily="Playfair Display, serif" fontSize="13" fontWeight="700" fill="white">Biotech</text>
@@ -132,11 +132,11 @@ function BridgeGraphic() {
         </g>
 
         {/* Card 4 - Administration */}
-        <g transform="translate(360, 268)" className="float-card-1">
-          <rect width="130" height="52" rx="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
+        <g transform="translate(392, 290)" className="float-card-1">
+          <rect width="118" height="52" rx="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
           <text x="12" y="20" fontFamily="Playfair Display, serif" fontSize="9" fill="rgba(255,255,255,0.5)" letterSpacing="1">PATHWAY</text>
           <text x="12" y="36" fontFamily="Playfair Display, serif" fontSize="11" fontWeight="700" fill="white">Health Admin</text>
-          <text x="102" y="36" fontSize="16">🏥</text>
+          <text x="90" y="36" fontSize="16">🏥</text>
         </g>
       </svg>
     </div>
