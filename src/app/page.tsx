@@ -171,7 +171,7 @@ export default function Home() {
   return (
     <>
       {/* ══════════════════════ HERO ══════════════════════ */}
-      <section ref={heroRef} style={{ minHeight: "100svh", background: "#f7f3ed", display: "flex", flexDirection: "column", position: "relative", overflow: "hidden", paddingTop: 68 }}>
+      <section ref={heroRef} style={{ minHeight: "100svh", background: "var(--cream)", display: "flex", flexDirection: "column", position: "relative", overflow: "hidden", paddingTop: 68 }}>
 
         <motion.div style={{ y: heroY, opacity: heroOpacity, position: "relative", zIndex: 1 }} className="hero-inner">
           <div style={{ maxWidth: 800, margin: "0 auto", padding: "72px 40px 64px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
@@ -197,15 +197,6 @@ export default function Home() {
                   shouldn&apos;t be this hard.
                 </motion.h1>
               </div>
-              {/* Decorative hand-drawn underline */}
-              <motion.div initial={{ scaleX: 0, opacity: 0 }} animate={{ scaleX: 1, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                style={{ transformOrigin: "left center", marginTop: 8, marginBottom: 4 }}>
-                <svg width="420" height="12" viewBox="0 0 420 12" fill="none" style={{ maxWidth: "100%" }}>
-                  <path d="M 2 8 Q 60 2 120 8 Q 180 14 240 7 Q 300 1 360 7 Q 390 10 418 6"
-                    stroke="var(--forest)" strokeWidth="2.5" fill="none" strokeLinecap="round" opacity="0.4" />
-                </svg>
-              </motion.div>
             </div>
 
             <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.65 }}
