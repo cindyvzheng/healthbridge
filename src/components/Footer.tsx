@@ -76,7 +76,7 @@ export default function Footer() {
               © HealthBridge
             </p>
             <p style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>
-              A fiscally sponsored 501(c)(3) nonprofit via Hack Club Bank · EIN 81-2908499
+              HealthBridge is an official 501(c)(3) nonprofit. EIN 81-2908499. Your donation is tax-deductible. All rights reserved.
             </p>
           </div>
           <div style={{ display: "flex", gap: 20 }}>
