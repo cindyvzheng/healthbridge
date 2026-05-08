@@ -171,73 +171,7 @@ export default function Home() {
   return (
     <>
       {/* ══════════════════════ HERO ══════════════════════ */}
-      <section ref={heroRef} style={{ minHeight: "100svh", background: "var(--cream)", display: "flex", flexDirection: "column", position: "relative", overflow: "hidden", paddingTop: 68 }}>
-
-        {/* Ghost bridge watermark — fills background, very faint */}
-        <div aria-hidden="true" style={{
-          position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          opacity: 1,
-        }}>
-          <svg viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg"
-            style={{ position: "absolute", width: "130%", height: "130%", top: "-15%", left: "-15%" }}>
-
-            {/* Bridge deck */}
-            <rect x="80" y="400" width="1040" height="16" rx="6" fill="var(--forest)" opacity="0.06" />
-
-            {/* Left tower cables */}
-            {[0,1,2,3,4,5,6,7,8,9,10,11].map(i => (
-              <line key={`lca${i}`} x1="385" y1="80" x2={80 + i * 28} y2="400"
-                stroke="var(--forest)" strokeWidth="1.5" opacity="0.04" />
-            ))}
-            {[0,1,2,3,4,5,6,7,8,9].map(i => (
-              <line key={`lcb${i}`} x1="385" y1="80" x2={410 + i * 30} y2="400"
-                stroke="var(--forest)" strokeWidth="1.5" opacity="0.04" />
-            ))}
-
-            {/* Right tower cables */}
-            {[0,1,2,3,4,5,6,7,8,9,10,11].map(i => (
-              <line key={`rca${i}`} x1="815" y1="80" x2={1120 - i * 28} y2="400"
-                stroke="var(--forest)" strokeWidth="1.5" opacity="0.04" />
-            ))}
-            {[0,1,2,3,4,5,6,7,8,9].map(i => (
-              <line key={`rcb${i}`} x1="815" y1="80" x2={790 - i * 30} y2="400"
-                stroke="var(--forest)" strokeWidth="1.5" opacity="0.04" />
-            ))}
-
-            {/* Left tower */}
-            <rect x="374" y="75" width="22" height="330" rx="5" fill="var(--forest)" opacity="0.07" />
-            <rect x="348" y="180" width="74" height="14" rx="5" fill="var(--forest)" opacity="0.06" />
-            <rect x="354" y="230" width="62" height="11" rx="4" fill="var(--forest)" opacity="0.05" />
-            <rect x="360" y="275" width="50" height="9" rx="3" fill="var(--forest)" opacity="0.04" />
-            <polygon points="385,28 373,78 397,78" fill="var(--forest)" opacity="0.08" />
-            <circle cx="385" cy="28" r="8" fill="var(--forest)" opacity="0.07" />
-            <circle cx="385" cy="28" r="20" fill="var(--forest)" opacity="0.03" />
-
-            {/* Right tower */}
-            <rect x="804" y="75" width="22" height="330" rx="5" fill="var(--forest)" opacity="0.07" />
-            <rect x="778" y="180" width="74" height="14" rx="5" fill="var(--forest)" opacity="0.06" />
-            <rect x="784" y="230" width="62" height="11" rx="4" fill="var(--forest)" opacity="0.05" />
-            <rect x="790" y="275" width="50" height="9" rx="3" fill="var(--forest)" opacity="0.04" />
-            <polygon points="815,28 803,78 827,78" fill="var(--forest)" opacity="0.08" />
-            <circle cx="815" cy="28" r="8" fill="var(--forest)" opacity="0.07" />
-            <circle cx="815" cy="28" r="20" fill="var(--forest)" opacity="0.03" />
-
-            {/* Main catenary */}
-            <path d="M 80 260 Q 385 420 600 360 Q 815 300 1120 260"
-              stroke="var(--forest)" strokeWidth="3" fill="none" opacity="0.05" />
-
-            {/* Pillars below deck */}
-            <rect x="374" y="416" width="22" height="120" rx="3" fill="var(--forest)" opacity="0.05" />
-            <rect x="804" y="416" width="22" height="120" rx="3" fill="var(--forest)" opacity="0.05" />
-
-            {/* Water */}
-            <path d="M 100 545 Q 400 538 600 542 Q 800 546 1100 538"
-              stroke="var(--forest)" strokeWidth="2" fill="none" opacity="0.04" />
-            <path d="M 150 560 Q 420 555 600 558 Q 780 561 1050 555"
-              stroke="var(--forest)" strokeWidth="1.5" fill="none" opacity="0.03" />
-          </svg>
-        </div>
+      <section ref={heroRef} style={{ minHeight: "100svh", background: "#f7f3ed", display: "flex", flexDirection: "column", position: "relative", overflow: "hidden", paddingTop: 68 }}>
 
         <motion.div style={{ y: heroY, opacity: heroOpacity, position: "relative", zIndex: 1 }} className="hero-inner">
           <div style={{ maxWidth: 800, margin: "0 auto", padding: "72px 40px 64px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
@@ -263,6 +197,15 @@ export default function Home() {
                   shouldn&apos;t be this hard.
                 </motion.h1>
               </div>
+              {/* Decorative hand-drawn underline */}
+              <motion.div initial={{ scaleX: 0, opacity: 0 }} animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                style={{ transformOrigin: "left center", marginTop: 8, marginBottom: 4 }}>
+                <svg width="420" height="12" viewBox="0 0 420 12" fill="none" style={{ maxWidth: "100%" }}>
+                  <path d="M 2 8 Q 60 2 120 8 Q 180 14 240 7 Q 300 1 360 7 Q 390 10 418 6"
+                    stroke="var(--forest)" strokeWidth="2.5" fill="none" strokeLinecap="round" opacity="0.4" />
+                </svg>
+              </motion.div>
             </div>
 
             <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.65 }}
