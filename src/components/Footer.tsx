@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -18,27 +19,20 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-              <div style={{
-                width: 36, height: 36,
-                background: "rgba(255,255,255,0.15)",
-                borderRadius: 10,
-                display: "flex", alignItems: "center", justifyContent: "center",
-              }}>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 3C10 3 5 6 5 10.5C5 13.538 7.238 16 10 16C12.762 16 15 13.538 15 10.5C15 6 10 3 10 3Z" fill="white" opacity="0.9"/>
-                  <path d="M8 10.5H12M10 8.5V12.5" stroke="var(--forest)" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-              </div>
-              <span style={{ fontFamily: "Fraunces, Georgia, serif", fontWeight: 700, fontSize: 20 }}>HealthBridge</span>
+              <Image
+                src="/healthbridge.png"
+                alt="HealthBridge logo"
+                width={36}
+                height={36}
+                style={{ objectFit: "contain", flexShrink: 0, filter: "brightness(0) invert(1)" }}
+              />
+              <span style={{ fontFamily: "Playfair Display, Georgia, serif", fontWeight: 700, fontSize: 20 }}>HealthBridge</span>
             </div>
-            <p style={{ color: "rgba(255,255,255,0.65)", fontSize: 14, lineHeight: 1.7, maxWidth: 260 }}>
-              A free toolkit helping low-income students explore and enter healthcare careers.
-            </p>
           </div>
 
           {/* Links */}
           <div>
-            <p style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 16, marginBottom: 16 }}>Explore</p>
+            <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 600, fontSize: 16, marginBottom: 16 }}>Explore</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {[
                 { href: "/resources", label: "Resource Library" },
@@ -53,35 +47,26 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Get Involved */}
-          <div>
-            <p style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 16, marginBottom: 16 }}>Get Involved</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {[
-                { href: "/join", label: "Join Our Team" },
-                { href: "/contact", label: "Contact Us" },
-              ].map(({ href, label }) => (
-                <Link key={href} href={href} style={{ color: "rgba(255,255,255,0.65)", textDecoration: "none", fontSize: 14, transition: "color 0.2s" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
-                >{label}</Link>
-              ))}
-            </div>
-          </div>
-
           {/* Contact */}
           <div>
-            <p style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 16, marginBottom: 16 }}>Say Hello</p>
+            <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 600, fontSize: 16, marginBottom: 16 }}>Say Hello</p>
             <a
-              href="mailto:joinhealthbridge@gmail.com"
+              href="mailto:hello@healthbridgeproject.org"
               style={{ color: "rgba(255,255,255,0.65)", fontSize: 14, textDecoration: "none", wordBreak: "break-all" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
             >
-              joinhealthbridge@gmail.com
+              hello@healthbridgeproject.org
             </a>
             <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 13, marginTop: 8 }}>We respond within 48 hours.</p>
           </div>
+        </div>
+
+        {/* 501c3 notice */}
+        <div style={{ marginBottom: 32 }}>
+          <p style={{ color: "rgba(255,255,255,0.85)", fontSize: 14, lineHeight: 1.75, maxWidth: 600, margin: 0 }}>
+            HealthBridge is an official 501(c)(3) nonprofit committed to making healthcare careers accessible to all students. EIN: 81-2908499
+          </p>
         </div>
 
         <div style={{
@@ -93,12 +78,19 @@ export default function Footer() {
           flexWrap: "wrap",
           gap: 12,
         }}>
-          <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13 }}>
-            © {new Date().getFullYear()} HealthBridge. Free for all students.
+          <p style={{ color: "white", fontSize: 20, fontFamily: "Playfair Display, serif", fontWeight: 800 }}>
+            © HealthBridge. &nbsp;<span style={{ fontWeight: 800, fontSize: 20, color: "white" }}> All rights reserved.</span>
           </p>
-          <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 13 }}>
-            Built with care in Brooklyn.
-          </p>
+          <div style={{ display: "flex", gap: 20 }}>
+            <Link href="/terms" style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, textDecoration: "none" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.4)")}
+            >Terms of Service</Link>
+            <Link href="/privacy" style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, textDecoration: "none" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.4)")}
+            >Privacy Policy</Link>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
@@ -10,13 +9,18 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 800));
+    const res = await fetch("https://formspree.io/f/xykokkgq", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
     setLoading(false);
-    setSubmitted(true);
+    if (res.ok) setSubmitted(true);
   };
 
   return (
     <div style={{ paddingTop: 100 }}>
+
       {/* Header */}
       <section style={{ padding: "72px 24px 64px", background: "var(--cream)" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -24,7 +28,7 @@ export default function ContactPage() {
             Contact
           </p>
           <h1 style={{
-            fontFamily: "Fraunces, serif",
+            fontFamily: "Playfair Display, serif",
             fontSize: "clamp(36px, 5vw, 56px)",
             fontWeight: 700,
             color: "var(--forest)",
@@ -44,6 +48,7 @@ export default function ContactPage() {
       {/* Content */}
       <section style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px 80px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 64, alignItems: "start" }}>
+
           {/* Sidebar */}
           <div>
             {/* Direct email */}
@@ -59,18 +64,18 @@ export default function ContactPage() {
               <p style={{ color: "rgba(255,255,255,0.6)", fontSize: 13, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "Plus Jakarta Sans, sans-serif", marginBottom: 12 }}>Direct Email</p>
               <p style={{ fontSize: 20, marginBottom: 8 }}>📩</p>
               <a
-                href="mailto:joinhealthbridge@gmail.com"
+                href="mailto:hello@healthbridgeproject.org"
                 style={{
                   color: "white",
                   textDecoration: "none",
-                  fontFamily: "Fraunces, serif",
+                  fontFamily: "Playfair Display, serif",
                   fontWeight: 600,
                   fontSize: 17,
                   lineHeight: 1.4,
                   wordBreak: "break-all",
                 }}
               >
-                joinhealthbridge@gmail.com
+                hello@healthbridgeproject.org
               </a>
               <p style={{ color: "rgba(255,255,255,0.5)", fontSize: 13, marginTop: 12, fontFamily: "Plus Jakarta Sans, sans-serif" }}>We aim to respond within 48 hours.</p>
             </div>
@@ -94,19 +99,14 @@ export default function ContactPage() {
                 }}>
                   <span style={{ fontSize: 20, flexShrink: 0 }}>{icon}</span>
                   <div>
-                    <p style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 15, color: "var(--forest)", marginBottom: 2 }}>{title}</p>
+                    <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 600, fontSize: 15, color: "var(--forest)", marginBottom: 2 }}>{title}</p>
                     <p style={{ color: "var(--text-muted)", fontSize: 13, lineHeight: 1.5 }}>{desc}</p>
                   </div>
                 </div>
               ))}
             </div>
-
-            <div style={{ marginTop: 24, padding: "20px 24px", background: "var(--mint)", borderRadius: 16, border: "1px solid var(--mint-dark)" }}>
-              <p style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 16, color: "var(--forest)", marginBottom: 6 }}>Want to join the team?</p>
-              <p style={{ color: "var(--text-muted)", fontSize: 14, marginBottom: 14 }}>If you&apos;re interested in contributing, check out our team page.</p>
-              <Link href="/join" className="btn-primary" style={{ fontSize: 14, padding: "10px 20px" }}>View Open Roles</Link>
-            </div>
           </div>
+          {/* end sidebar */}
 
           {/* Form */}
           <div>
@@ -119,8 +119,8 @@ export default function ContactPage() {
                 textAlign: "center",
               }}>
                 <div style={{ fontSize: 56, marginBottom: 20 }}>✅</div>
-                <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 28, color: "var(--forest)", marginBottom: 12 }}>Message sent!</h2>
-                <p style={{ color: "var(--text-muted)", fontSize: 16, lineHeight: 1.7, marginBottom: 28, maxWidth: 360, margin: "0 auto 28px" }}>
+                <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: 28, color: "var(--forest)", marginBottom: 12 }}>Message sent!</h2>
+                <p style={{ color: "var(--text-muted)", fontSize: 16, lineHeight: 1.7, maxWidth: 360, margin: "0 auto 28px" }}>
                   Thanks for reaching out. We&apos;ll get back to you within 48 hours at <strong>{form.email}</strong>.
                 </p>
                 <button onClick={() => { setSubmitted(false); setForm({ name: "", email: "", subject: "", message: "" }); }} className="btn-secondary">
@@ -134,7 +134,7 @@ export default function ContactPage() {
                 borderRadius: 24,
                 padding: "40px",
               }}>
-                <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 22, fontWeight: 700, color: "var(--forest)", marginBottom: 28 }}>Send us a message</h2>
+                <h2 style={{ fontFamily: "Playfair Display, serif", fontSize: 22, fontWeight: 700, color: "var(--forest)", marginBottom: 28 }}>Send us a message</h2>
 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
                   <div>
@@ -201,7 +201,10 @@ export default function ContactPage() {
               </form>
             )}
           </div>
+          {/* end form */}
+
         </div>
+        {/* end grid */}
       </section>
 
       <style>{`

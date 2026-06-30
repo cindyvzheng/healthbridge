@@ -1,13 +1,14 @@
 @import "tailwindcss";
-@import "@fontsource/fraunces/400.css";
-@import "@fontsource/fraunces/600.css";
-@import "@fontsource/fraunces/700.css";
+@import "@fontsource/playfair-display/400.css";
+@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/playfair-display/400-italic.css";
+@import "@fontsource/playfair-display/700-italic.css";
 @import "@fontsource/dm-serif-display/400.css";
 @import "@fontsource/dm-serif-display/400-italic.css";
-@import "@fontsource/syne/400.css";
-@import "@fontsource/syne/600.css";
-@import "@fontsource/syne/700.css";
-@import "@fontsource/syne/800.css";
+@import "@fontsource/playfair-display/400.css";
+@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/playfair-display/400-italic.css";
+@import "@fontsource/playfair-display/700-italic.css";
 @import "@fontsource/plus-jakarta-sans/400.css";
 @import "@fontsource/plus-jakarta-sans/500.css";
 @import "@fontsource/plus-jakarta-sans/600.css";
@@ -38,7 +39,7 @@
   --color-background: var(--cream);
   --color-foreground: var(--text);
   --font-display: "DM Serif Display", Georgia, serif;
-  --font-headline: "Syne", system-ui, sans-serif;
+  --font-headline: "Playfair Display", Georgia, serif;
   --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
 }
 
@@ -60,7 +61,7 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: "Syne", system-ui, sans-serif;
+  font-family: "Playfair Display", Georgia, serif;
   line-height: 1.1;
   color: var(--ink);
 }
@@ -77,8 +78,8 @@ h1, h2, h3, h4 {
   font-family: "Syne", system-ui, sans-serif;
 }
 
-.font-body {
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+.font-headline {
+  font-family: "Playfair Display", Georgia, serif;
 }
 
 /* Paper noise texture */
@@ -114,7 +115,7 @@ body::before {
   align-items: center;
   gap: 16px;
   color: var(--text-light);
-  font-family: "Syne", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
