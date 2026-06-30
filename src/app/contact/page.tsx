@@ -1,0 +1,215 @@
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+
+export default function ContactPage() {
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    await new Promise((r) => setTimeout(r, 800));
+    setLoading(false);
+    setSubmitted(true);
+  };
+
+  return (
+    <div style={{ paddingTop: 100 }}>
+      {/* Header */}
+      <section style={{ padding: "72px 24px 64px", background: "var(--cream)" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <p style={{ color: "var(--terra)", fontWeight: 600, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: "Plus Jakarta Sans, sans-serif", marginBottom: 16 }}>
+            Contact
+          </p>
+          <h1 style={{
+            fontFamily: "Fraunces, serif",
+            fontSize: "clamp(36px, 5vw, 56px)",
+            fontWeight: 700,
+            color: "var(--forest)",
+            lineHeight: 1.1,
+            letterSpacing: "-0.02em",
+            marginBottom: 16,
+            maxWidth: 600,
+          }}>
+            We&apos;d love to hear from you.
+          </h1>
+          <p style={{ color: "var(--text-muted)", fontSize: 17, lineHeight: 1.7, maxWidth: 480 }}>
+            Have a question, suggestion, or want to collaborate? Reach out — we respond within 48 hours.
+          </p>
+        </div>
+      </section>
+
+      {/* Content */}
+      <section style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px 80px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 64, alignItems: "start" }}>
+          {/* Sidebar */}
+          <div>
+            {/* Direct email */}
+            <div style={{
+              background: "var(--forest)",
+              borderRadius: 20,
+              padding: "32px",
+              marginBottom: 24,
+              position: "relative",
+              overflow: "hidden",
+            }}>
+              <div style={{ position: "absolute", top: -30, right: -30, width: 120, height: 120, borderRadius: "50%", background: "rgba(255,255,255,0.06)" }} />
+              <p style={{ color: "rgba(255,255,255,0.6)", fontSize: 13, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "Plus Jakarta Sans, sans-serif", marginBottom: 12 }}>Direct Email</p>
+              <p style={{ fontSize: 20, marginBottom: 8 }}>📩</p>
+              <a
+                href="mailto:joinhealthbridge@gmail.com"
+                style={{
+                  color: "white",
+                  textDecoration: "none",
+                  fontFamily: "Fraunces, serif",
+                  fontWeight: 600,
+                  fontSize: 17,
+                  lineHeight: 1.4,
+                  wordBreak: "break-all",
+                }}
+              >
+                joinhealthbridge@gmail.com
+              </a>
+              <p style={{ color: "rgba(255,255,255,0.5)", fontSize: 13, marginTop: 12, fontFamily: "Plus Jakarta Sans, sans-serif" }}>We aim to respond within 48 hours.</p>
+            </div>
+
+            {/* Use cases */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              {[
+                { icon: "💡", title: "Suggestions", desc: "Know a resource we're missing or a career path we should cover?" },
+                { icon: "🤝", title: "Collaborations", desc: "Representing an org, school, or program? Let's talk partnerships." },
+                { icon: "🐛", title: "Site Issues", desc: "Found a broken link or something not working? Let us know." },
+                { icon: "❓", title: "General Questions", desc: "Anything else — we're happy to chat." },
+              ].map(({ icon, title, desc }) => (
+                <div key={title} style={{
+                  background: "white",
+                  border: "1px solid var(--border)",
+                  borderRadius: 14,
+                  padding: "16px 20px",
+                  display: "flex",
+                  gap: 14,
+                  alignItems: "flex-start",
+                }}>
+                  <span style={{ fontSize: 20, flexShrink: 0 }}>{icon}</span>
+                  <div>
+                    <p style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 15, color: "var(--forest)", marginBottom: 2 }}>{title}</p>
+                    <p style={{ color: "var(--text-muted)", fontSize: 13, lineHeight: 1.5 }}>{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ marginTop: 24, padding: "20px 24px", background: "var(--mint)", borderRadius: 16, border: "1px solid var(--mint-dark)" }}>
+              <p style={{ fontFamily: "Fraunces, serif", fontWeight: 600, fontSize: 16, color: "var(--forest)", marginBottom: 6 }}>Want to join the team?</p>
+              <p style={{ color: "var(--text-muted)", fontSize: 14, marginBottom: 14 }}>If you&apos;re interested in contributing, check out our team page.</p>
+              <Link href="/join" className="btn-primary" style={{ fontSize: 14, padding: "10px 20px" }}>View Open Roles</Link>
+            </div>
+          </div>
+
+          {/* Form */}
+          <div>
+            {submitted ? (
+              <div style={{
+                background: "white",
+                border: "1px solid var(--border)",
+                borderRadius: 24,
+                padding: "64px 48px",
+                textAlign: "center",
+              }}>
+                <div style={{ fontSize: 56, marginBottom: 20 }}>✅</div>
+                <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 28, color: "var(--forest)", marginBottom: 12 }}>Message sent!</h2>
+                <p style={{ color: "var(--text-muted)", fontSize: 16, lineHeight: 1.7, marginBottom: 28, maxWidth: 360, margin: "0 auto 28px" }}>
+                  Thanks for reaching out. We&apos;ll get back to you within 48 hours at <strong>{form.email}</strong>.
+                </p>
+                <button onClick={() => { setSubmitted(false); setForm({ name: "", email: "", subject: "", message: "" }); }} className="btn-secondary">
+                  Send another message
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} style={{
+                background: "white",
+                border: "1px solid var(--border)",
+                borderRadius: 24,
+                padding: "40px",
+              }}>
+                <h2 style={{ fontFamily: "Fraunces, serif", fontSize: 22, fontWeight: 700, color: "var(--forest)", marginBottom: 28 }}>Send us a message</h2>
+
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
+                  <div>
+                    <label style={{ display: "block", fontWeight: 600, fontSize: 14, color: "var(--text)", marginBottom: 6, fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                      Your Name *
+                    </label>
+                    <input
+                      required
+                      type="text"
+                      placeholder="Alex Chen"
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      className="form-input"
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: "block", fontWeight: 600, fontSize: 14, color: "var(--text)", marginBottom: 6, fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                      Email *
+                    </label>
+                    <input
+                      required
+                      type="email"
+                      placeholder="alex@example.com"
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      className="form-input"
+                    />
+                  </div>
+                </div>
+
+                <div style={{ marginBottom: 16 }}>
+                  <label style={{ display: "block", fontWeight: 600, fontSize: 14, color: "var(--text)", marginBottom: 6, fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                    Subject *
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    placeholder="What's this about?"
+                    value={form.subject}
+                    onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                    className="form-input"
+                  />
+                </div>
+
+                <div style={{ marginBottom: 28 }}>
+                  <label style={{ display: "block", fontWeight: 600, fontSize: 14, color: "var(--text)", marginBottom: 6, fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                    Message *
+                  </label>
+                  <textarea
+                    required
+                    rows={6}
+                    placeholder="Tell us what's on your mind..."
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    className="form-input"
+                    style={{ resize: "vertical", minHeight: 140 }}
+                  />
+                </div>
+
+                <button type="submit" className="btn-primary" style={{ width: "100%", justifyContent: "center", opacity: loading ? 0.75 : 1 }} disabled={loading}>
+                  {loading ? "Sending..." : "Send Message"}
+                  {!loading && <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <style>{`
+        @media (max-width: 768px) {
+          section > div > div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+          form > div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
+    </div>
+  );
+}
