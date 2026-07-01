@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* 👇 FAVICON - ADD THIS LINE 👇 */}
-        <link rel="icon" href="/healthbridge.png" />
+        <link rel="icon" href="/favicon.ico" />
 
         {/* Google Analytics */}
         <script
