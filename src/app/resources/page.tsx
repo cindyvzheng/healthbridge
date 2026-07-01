@@ -1,7 +1,8 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import Cookies from "js-cookie";
 
 const resources = [
   {
@@ -11,7 +12,7 @@ const resources = [
     category: "Medicine",
     level: "Exploring",
     time: "Self-paced",
-    link: "#",
+    link: "/resources/1",
     tags: ["MCAT", "Shadowing", "Volunteering"],
     featured: true,
   },
@@ -22,7 +23,7 @@ const resources = [
     category: "Medicine",
     level: "Committed",
     time: "3–6 months",
-    link: "#",
+    link: "/resources/2",
     tags: ["MCAT", "Study guides"],
     featured: false,
   },
@@ -33,7 +34,7 @@ const resources = [
     category: "Public Health",
     level: "Exploring",
     time: "1–2 hours",
-    link: "#",
+    link: "/resources/3",
     tags: ["Community health", "Epidemiology"],
     featured: true,
   },
@@ -44,7 +45,7 @@ const resources = [
     category: "Public Health",
     level: "Applying",
     time: "1 hour",
-    link: "#",
+    link: "/resources/4",
     tags: ["Internships", "Community health"],
     featured: false,
   },
@@ -55,7 +56,7 @@ const resources = [
     category: "Policy",
     level: "Exploring",
     time: "45 min",
-    link: "#",
+    link: "/resources/5",
     tags: ["Policy", "Economics", "Advocacy"],
     featured: true,
   },
@@ -66,7 +67,7 @@ const resources = [
     category: "Policy",
     level: "Exploring",
     time: "2–3 hours",
-    link: "#",
+    link: "/resources/6",
     tags: ["Economics", "Health systems"],
     featured: false,
   },
@@ -77,7 +78,7 @@ const resources = [
     category: "Nursing",
     level: "Exploring",
     time: "1 hour",
-    link: "#",
+    link: "/resources/7",
     tags: ["RN", "NP", "CNA"],
     featured: true,
   },
@@ -88,7 +89,7 @@ const resources = [
     category: "All Paths",
     level: "Exploring",
     time: "Ongoing",
-    link: "#",
+    link: "/resources/8",
     tags: ["Volunteering", "Clinical experience"],
     featured: false,
   },
@@ -99,7 +100,7 @@ const resources = [
     category: "All Paths",
     level: "Applying",
     time: "Varies",
-    link: "#",
+    link: "/resources/9",
     tags: ["Financial aid", "Scholarships"],
     featured: true,
   },
@@ -110,7 +111,7 @@ const resources = [
     category: "All Paths",
     level: "Applying",
     time: "2–4 hours",
-    link: "#",
+    link: "/resources/10",
     tags: ["Personal statement", "Applications"],
     featured: false,
   },
@@ -171,7 +172,7 @@ const IconX = () => (
 );
 
 /* ── List Card ─────────────────────────────────────────────────── */
-function ListCard({ r, index }: { r: typeof resources[0]; index: number }) {
+function ListCard({ r, index, visited }: { r: typeof resources[0]; index: number; visited: number[] }) {
   const [hovered, setHovered] = useState(false);
   const meta = categoryMeta[r.category];
   const lvl  = levelMeta[r.level];
@@ -325,7 +326,7 @@ function ListCard({ r, index }: { r: typeof resources[0]; index: number }) {
           </span>
         </div>
 
-        <a href={r.link} style={{
+        <Link href={r.link} style={{
           display: "inline-flex",
           alignItems: "center",
           gap: 7,
@@ -339,16 +340,16 @@ function ListCard({ r, index }: { r: typeof resources[0]; index: number }) {
           transition: "color 0.2s",
           whiteSpace: "nowrap",
         }}>
-          Open
+          {visited.includes(r.id) ? "Continue reading" : "Open"}
           <IconArrow />
-        </a>
+        </Link>
       </div>
     </motion.div>
   );
 }
 
 /* ── Grid Card ─────────────────────────────────────────────────── */
-function GridCard({ r, index }: { r: typeof resources[0]; index: number }) {
+function GridCard({ r, index, visited }: { r: typeof resources[0]; index: number; visited: number[] }) {
   const [hovered, setHovered] = useState(false);
   const meta = categoryMeta[r.category];
   const lvl  = levelMeta[r.level];
@@ -453,11 +454,11 @@ function GridCard({ r, index }: { r: typeof resources[0]; index: number }) {
           paddingTop: 14,
           borderTop: `1px solid ${hovered ? meta.dim : "var(--border)"}`,
           display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          flexDirection: "column",
+          gap: 10,
           transition: "border-color 0.2s",
         }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 5, color: "var(--text-light)" }}>
               <IconClock />
               <span style={{ fontFamily: "Plus Jakarta Sans, sans-serif", fontSize: 12 }}>{r.time}</span>
@@ -474,21 +475,26 @@ function GridCard({ r, index }: { r: typeof resources[0]; index: number }) {
               {r.level}
             </span>
           </div>
-          <a href={r.link} style={{
+          <Link href={r.link} style={{
             display: "inline-flex",
             alignItems: "center",
             justifyContent: "center",
-            width: 34,
-            height: 34,
-            borderRadius: "50%",
-            background: hovered ? meta.color : "transparent",
-            border: `1.5px solid ${hovered ? meta.color : "var(--border)"}`,
-            color: hovered ? "white" : "var(--text-muted)",
+            gap: 6,
+            fontFamily: "Syne, sans-serif",
+            fontWeight: 700,
+            fontSize: 10,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            color: hovered ? meta.color : "var(--text-muted)",
             textDecoration: "none",
             transition: "all 0.2s",
+            padding: "8px 12px",
+            borderRadius: 4,
+            background: hovered ? meta.light : "transparent",
           }}>
+            {visited.includes(r.id) ? "Continue reading" : "Open"}
             <IconArrow />
-          </a>
+          </Link>
         </div>
       </div>
     </motion.div>
@@ -502,6 +508,28 @@ export default function ResourcesPage() {
   const [search,         setSearch]         = useState("");
   const [viewMode,       setViewMode]       = useState<"list" | "grid">("list");
   const [sidebarOpen,    setSidebarOpen]    = useState(false);
+  const [visitedResources, setVisitedResources] = useState<number[]>([]);
+
+  useEffect(() => {
+    const updateVisitedResources = () => {
+      const visited = Cookies.get('visitedResources');
+      if (visited) {
+        setVisitedResources(JSON.parse(visited));
+      }
+    };
+
+    updateVisitedResources();
+
+    // Update when page becomes visible (user navigates back from resource page)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        updateVisitedResources();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, []);
 
   const filtered = useMemo(() => {
     return resources.filter((r) => {
@@ -1203,7 +1231,7 @@ export default function ResourcesPage() {
                 }}
               >
                 {filtered.map((r, i) => (
-                  <ListCard key={r.id} r={r} index={i} />
+                  <ListCard key={r.id} r={r} index={i} visited={visitedResources} />
                 ))}
               </motion.div>
             ) : (
@@ -1219,7 +1247,7 @@ export default function ResourcesPage() {
                 }}
               >
                 {filtered.map((r, i) => (
-                  <GridCard key={r.id} r={r} index={i} />
+                  <GridCard key={r.id} r={r} index={i} visited={visitedResources} />
                 ))}
               </motion.div>
             )}
