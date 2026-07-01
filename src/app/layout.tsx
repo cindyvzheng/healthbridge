@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* 👇 FAVICON - ADD THIS LINE 👇 */}
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon-v2.ico" />
 
         {/* Google Analytics */}
         <script
